@@ -38,6 +38,26 @@ class New_model extends Grocery_Model {
 			->result_array();
 		return $data;
 	}
+
+	public function getTopNews(){
+		$data = $this->db
+			->where('status', 1)
+			->where('view', 1)
+			->order_by('id desc')
+			->limit(3)
+			->get($this->table)
+			->result_array();
+		return $data;
+	}
+	public function getNewNews(){
+		$data = $this->db
+			->where('status', 1)
+			->order_by('id desc')
+			->limit(3)
+			->get($this->table)
+			->result_array();
+		return $data;
+	}
 	
 	
 }

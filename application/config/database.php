@@ -100,7 +100,7 @@ if($_SERVER['HTTP_HOST'] == 'beta.fulllooksongngu.com') {
 		'hostname' => 'localhost',
 		'username' => 'root',
 		'password' => '',
-		'database' => 'school',
+		'database' => 'tuthuocnam',
 		'dbdriver' => 'mysqli',
 		'dbprefix' => '',
 		'pconnect' => FALSE,

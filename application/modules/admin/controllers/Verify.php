@@ -2,8 +2,8 @@
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Verify extends MY_Controller{
 	public function login(){
-		if($this->session->userdata("role")){
-			redirect(base_url()."admin/home/index");
+		if($this->session->userdata("roleId")){
+			redirect(base_url()."admin/home");
 		}else{
 			$data = array();
 			if($this->input->post()){

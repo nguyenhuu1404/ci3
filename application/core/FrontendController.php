@@ -9,12 +9,26 @@ class FrontendController extends MY_Controller{
 		$this->data['module'] = $module;
 		$this->data['controller'] = $controller;
 		$this->data['masterPage'] = "$module/index";
-		$this->load->model('menu');
-		$dataMenu = $this->category->getAll();
-		$router = $module.'/'.$controller;
-		$dataParents = $this->category->getParentsByRouter($router);
+		
+		//xu li main menu
+		$dataMenu = $this->category->getMainMenu();
+		$alias = $this->uri->uri_string;
+		if($alias != ' '){
+			$alias = substr($alias, 0, -5);
+		}else{
+			$alias = '/';
+		}
+		
+		$dataCategory = $this->category->getCategoryByAlias($alias);
+
+		$tam = trim($dataCategory['parents'], ',');
+		$dataParents = explode(',', $tam);
+		$this->data['title'] = $dataCategory['title'];
+		$this->data['description'] = $dataCategory['description'];
 		$this->data['parents'] = $dataParents;
 		$this->data['categories'] = $dataMenu;
+		//debug query
+		//$this->output->enable_profiler(TRUE);    
 	}
 }
 ?>

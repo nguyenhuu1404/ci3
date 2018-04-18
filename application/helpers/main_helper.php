@@ -104,7 +104,95 @@ function showHomeMenu($array = array(), $parents){
             }
             echo '</li>';
         }
-    }	
+    }
+
+    //show home menu
+function showHomeMenuBs($array = array(), $parents){
+        foreach ($array as $item){
+        	$child = $active = '';
+        	if( in_array($item['id'], $parents)){
+        		$active = 'active ';
+        	}
+        	if (!empty($item['children'])){
+        		$child = 'children';	
+        	}
+            echo '<li class="'.$active.$child.'">';
+            if(!$item['router']){
+                echo '<a href="javascript:void(0);" onclick="return: false;">';
+            }else {
+				$type = $item['type'];
+				switch ($type) {
+					case "isId":
+						$item['alias'] ? $url =  base_url().$item['alias'].'.html' : $url = base_url().$item['module'].'/'.$item['router'].'/'.$item['id'];	
+						break;
+					case "home":
+						$url = base_url();
+						break;
+					default:
+						$item['alias'] ? $url =  base_url().$item['alias'].'.html' : $url = base_url().$item['module'].'/'.$item['router'];
+				}
+				
+				
+                echo '<a href="'.$url.'">';
+            }
+            echo $item['name'];
+            echo '</a>';
+            if (!empty($item['children']))
+            {
+               
+                echo '<span class="dropdown-toggle ml-1 pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>';
+                echo '<ul class="sub-menu dropdown-menu">';
+					showHomeMenuBs($item['children'], $parents);
+				echo '</ul>';
+				
+            }
+            echo '</li>';
+        }
+    }
+
+    function productCategories($array = array(), $parents){
+        foreach ($array as $item){
+        	$child = $active = '';
+        	if( in_array($item['id'], $parents)){
+        		$active = 'active ';
+        	}
+        	if (!empty($item['children'])){
+        		$child = 'children';	
+        	}
+            echo '<li class="'.$active.$child.'">';
+            if(!$item['router']){
+                echo '<a href="javascript:void(0);" onclick="return: false;">';
+            }else {
+				$type = $item['type'];
+				switch ($type) {
+					case "isId":
+						$item['alias'] ? $url =  base_url().$item['alias'].'.html' : $url = base_url().$item['module'].'/'.$item['router'].'/'.$item['id'];	
+						break;
+					case "home":
+						$url = base_url();
+						break;
+					default:
+						$item['alias'] ? $url =  base_url().'danh-muc/'.$item['alias'].'.html' : $url = base_url().'danh-muc/'.$item['module'].'/'.$item['router'];
+				}
+				
+				
+                echo '<a href="'.$url.'">';
+            }
+            echo $item['name'];
+            echo '</a>';
+            if (!empty($item['children']))
+            {
+               
+                echo '<span class="dropdown-toggle ml-1 pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>';
+                echo '<ul class="sub-menu dropdown-menu">';
+					productCategories($item['children'], $parents);
+				echo '</ul>';
+				
+            }
+            echo '</li>';
+        }
+    }
+   
  //ma hoa chuoi
     function encrypt($pure_string, $encryption_key) {
         $iv_size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
@@ -208,5 +296,8 @@ function showHomeMenu($array = array(), $parents){
 	function strToArr($str){
 		$arr = array_map('trim', explode(',', $str));
 		return $arr;
+	}
+	function formatPrice($price){
+		return number_format($price, 3, "." , ".");
 	}
 ?>

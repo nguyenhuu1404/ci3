@@ -5,8 +5,8 @@ class Menus extends AdminGrocery {
 	protected $subject = 'Menus';
 	protected $columns = 'id, name, module, router, parent, created';
 	protected $hiddenFields = 'module, parents';
-	protected $add_fields = 'name, router, title, description, status, alias, ordering, parent, created, createdId, module';
-	protected $edit_fields = 'name, router, title, description, status, alias, ordering, parent, parents, modified, modifiedId, modifiedIds';
+	protected $add_fields = 'name, router, status, ordering, parent, created, createdId, module';
+	protected $edit_fields = 'name, router, status, ordering, parent, parents, modified, modifiedId, modifiedIds';
 	public function index(){
 	
 		$parent = $this->menu->getParentOptions($this->table);
@@ -24,7 +24,6 @@ class Menus extends AdminGrocery {
 		$crud->callback_before_update(array($this, 'customBeforeUpdate'));
 		
 		$crud->field_type('parent','dropdown', $parent);
-		$crud->field_type('description', 'text');
 		
 		$output = $crud->render();
 		$this->_example_output($output);

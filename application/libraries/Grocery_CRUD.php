@@ -1485,10 +1485,10 @@ class grocery_CRUD_Model_Driver extends grocery_CRUD_Field_Types
 			return false;
 		}
 	}
-
+//xoa file
 	protected function delete_file($state_info)
 	{
-
+		
 		if(isset($state_info->field_name) && isset($this->upload_fields[$state_info->field_name]))
 		{
 			$upload_info = $this->upload_fields[$state_info->field_name];
@@ -1497,6 +1497,16 @@ class grocery_CRUD_Model_Driver extends grocery_CRUD_Field_Types
 			{
 				if( unlink("{$upload_info->upload_path}/{$state_info->file_name}") )
 				{
+					
+					if(file_exists("{$upload_info->upload_path}/thumb/{$state_info->file_name}")){
+						unlink("{$upload_info->upload_path}/thumb/{$state_info->file_name}");
+					}
+					if(file_exists("{$upload_info->upload_path}/home/{$state_info->file_name}")){
+						unlink("{$upload_info->upload_path}/home/{$state_info->file_name}");
+					}
+					if(file_exists("{$upload_info->upload_path}/category/{$state_info->file_name}")){
+						unlink("{$upload_info->upload_path}/category/{$state_info->file_name}");
+					}
 					$this->basic_model->db_file_delete($state_info->field_name, $state_info->file_name);
 
 					return true;

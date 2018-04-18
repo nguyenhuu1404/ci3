@@ -3,10 +3,10 @@
 class Categories extends AdminGrocery {
 	protected $table = 'categories';
 	protected $subject = 'Danh mục';
-	protected $columns = 'id, name, type, module, parent, created';
+	protected $columns = 'id, name, category_type, type, module, parent, created';
 	protected $hiddenFields = 'parents';
-	protected $add_fields = 'name, parent, module, ordering, type, router, alias, status, created, createdId';
-	protected $edit_fields = 'name, parent, module, ordering, type, router, alias, parents, status, modified, modifiedId, modifiedIds';
+	protected $add_fields = 'name, title, description, is_menu, category_type, parent, module, ordering, type, router, alias, status, created, createdId';
+	protected $edit_fields = 'name, title, description, is_menu, category_type, parent, module, ordering, type, router, alias, parents, status, modified, modifiedId, modifiedIds';
 	public function index(){
 	
 		$parent = $this->menu->getParentOptions($this->table);
@@ -25,8 +25,9 @@ class Categories extends AdminGrocery {
 		$crud->callback_before_update(array($this, 'customBeforeUpdate'));
 		
 		$crud->field_type('parent','dropdown', $parent);
-		$crud->field_type('description', 'text');
-		$crud->field_type('isId','dropdown',
+		$crud->field_type('is_id','dropdown',
+		array('1' => 'Đã kích hoạt', '0' => 'Chưa kích hoạt'));
+		$crud->field_type('is_menu','dropdown',
 		array('1' => 'Đã kích hoạt', '0' => 'Chưa kích hoạt'));
 		
 		$output = $crud->render();

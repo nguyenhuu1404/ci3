@@ -12,6 +12,18 @@ class Category extends Grocery_Model {
 			return $data;
         
 	}
+
+	public function getMainMenu(){
+		$data = $this->db->where('status', 1)->where('is_menu', 1)
+			->order_by('ordering desc')->get($this->table)->result_array();
+		return $data;
+	}
+
+	public function getCategoriesByType($type){
+		$data = $this->db->where('status', 1)->where('category_type', $type)
+			->order_by('ordering desc')->get($this->table)->result_array();
+		return $data;
+	}
 	
 	public function getParentsByRouter($router){
 		$data = $this->db->select('parents')->from($this->table)->where('router', $router)->get()->row_array();
@@ -20,6 +32,13 @@ class Category extends Grocery_Model {
 		$arr = explode(',', $tam);
 		return $arr;
 	}
+
+	public function getCategoryByAlias($alias){
+		$data = $this->db->select('parents, title, description')->from($this->table)->where('alias', $alias)->get()->row_array();
+		
+		return $data;
+	}
+
 	public function getCateByParentId($cateId){
 		$data = $this->db
 			->select('id, name')
