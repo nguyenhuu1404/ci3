@@ -140,7 +140,7 @@ function showHomeMenuBs($array = array(), $parents){
             if (!empty($item['children']))
             {
                
-                echo '<span class="dropdown-toggle ml-1 pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>';
+                echo '<span class="dropdown-toggle ml-1 pointer" data-toggle="dropdown" aria-haspopup="true"></span>';
                 echo '<ul class="sub-menu dropdown-menu">';
 					showHomeMenuBs($item['children'], $parents);
 				echo '</ul>';
@@ -183,7 +183,7 @@ function showHomeMenuBs($array = array(), $parents){
             if (!empty($item['children']))
             {
                
-                echo '<span class="dropdown-toggle ml-1 pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>';
+                echo '<span class="dropdown-toggle ml-1 pointer" data-toggle="dropdown" aria-haspopup="true"></span>';
                 echo '<ul class="sub-menu dropdown-menu">';
 					productCategories($item['children'], $parents);
 				echo '</ul>';
@@ -300,4 +300,5 @@ function showHomeMenuBs($array = array(), $parents){
 	function formatPrice($price){
 		return number_format($price, 3, "." , ".");
 	}
+	
 ?>

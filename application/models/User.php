@@ -2,7 +2,7 @@
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class User extends Grocery_Model{
 	
-	protected $table = 'users';
+	public $table = 'users';
 	
 	public function __construct(){
 		parent::__construct();
@@ -84,5 +84,51 @@ class User extends Grocery_Model{
 			$options[$item['id']] = $item['role'];
 		}
 		return 	$options;
+	}
+	public function checkUserFacebook($userData = array()){
+        if(!empty($userData)){
+            //check whether user data already exists in database with same oauth info
+            $this->db->select('id');
+            $this->db->from($this->table);
+            $this->db->where(array('oauth_provider'=>$userData['oauth_provider'],'oauth_uid'=>$userData['oauth_uid']));
+            $prevQuery = $this->db->get();
+            $prevCheck = $prevQuery->num_rows();
+            
+            if($prevCheck > 0){
+                $prevResult = $prevQuery->row_array();
+                
+                //update user data
+                $userData['modified'] = date("Y-m-d H:i:s");
+                $update = $this->db->update($this->table, $userData, array('id'=>$prevResult['id']));
+                
+                //get user ID
+                $userID = $prevResult['id'];
+            }else{
+                //insert user data
+                $userData['created']  = date("Y-m-d H:i:s");
+                $insert = $this->db->insert($this->table, $userData);
+                
+                //get user ID
+                $userID = $this->db->insert_id();
+            }
+        }
+        
+        //return user ID
+        return $userID?$userID:FALSE;
+    }
+    public function loginEmail($email, $password){
+		$this->db
+			->select('id, email, fullname, phone, address_ship')
+			->where("email", $email)
+			->where("password", $password)
+			->where('status', 1);
+		
+		$query = $this->db->get($this->table);
+		echo $this->db->last_query();
+		if($query->num_rows() > 0){
+			return $query->row_array();
+		}else{
+			return FALSE;
+		}		
 	}
 }

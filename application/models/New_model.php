@@ -1,7 +1,7 @@
 <?php
 if(!defined('BASEPATH')) exit('No direct script access allowed');
 class New_model extends Grocery_Model {
-	protected $table = 'news';
+	public $table = 'news';
 	public function getAll(){
 		
 		$data = $this->db
@@ -16,6 +16,7 @@ class New_model extends Grocery_Model {
 			->where('status', 1)
 			->where("id != $newId")
 			->order_by('id desc')
+			->where('type', 'post')
 			->get($this->table)
 			
 			->result_array();
@@ -42,8 +43,8 @@ class New_model extends Grocery_Model {
 	public function getTopNews(){
 		$data = $this->db
 			->where('status', 1)
-			->where('view', 1)
-			->order_by('id desc')
+			->where('type', 'post')
+			->order_by('views desc')
 			->limit(3)
 			->get($this->table)
 			->result_array();
@@ -52,6 +53,7 @@ class New_model extends Grocery_Model {
 	public function getNewNews(){
 		$data = $this->db
 			->where('status', 1)
+			->where('type', 'post')
 			->order_by('id desc')
 			->limit(3)
 			->get($this->table)
@@ -59,5 +61,25 @@ class New_model extends Grocery_Model {
 		return $data;
 	}
 	
+	public function getCategoryBySlug($slug, $type){
+		$data = $this->db->select('id, parents, title, description')
+			->from('categories')
+			->where('slug', $slug)->where('category_type', $type)
+			->get()
+			->row_array();
+		return $data;	
+	}
+	public function getTagBySlug($slug, $type){
+		$data = $this->db->select('id, parents, name, title, description')
+			->from('tags')
+			->where('slug', $slug)->where('type', $type)
+			->get()
+			->row_array();
+		return $data;
+	}
+	public function getRelateNews($id, $categoryIds){
+		$data = $this->db->from($this->table)->where('category_id', $categoryIds)->where('id !=', $id)->order_by('rand()')->limit(4)->get()->result_array();
+		return $data;
+	}
 	
 }

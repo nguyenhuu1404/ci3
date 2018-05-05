@@ -1,7 +1,7 @@
 <?php
 if(!defined('BASEPATH')) exit('No direct script access allowed');
 class Category extends Grocery_Model {
-	protected $table = 'categories';
+	public $table = 'categories';
 	public function getAll(){
 		
 		$data = $this->db
@@ -46,5 +46,30 @@ class Category extends Grocery_Model {
 			->get($this->table)
 			->result_array();
 			return $data;
+	}
+
+	public function getNewcategories() {
+		$data = $this->db
+			->where('status', 1)
+			->where('parent', 0)
+			->where('category_type', 'new')
+			->order_by('id asc')
+			->get($this->table)
+			->result_array();
+		return $data;
+	}
+	public function getDataParents($parents){
+		$parents = trim($parents);
+		$parents = explode(',', $parents);
+		$data = $this->db->select('id, alias, slug, name')->from($this->table)->where_in('id', $parents)->get()->result_array();
+		return $data;
+	}
+	public function getCategoryBySlug($slug, $type){
+		$data = $this->db->select('id, parents, name, title, description')
+			->from($this->table)
+			->where('slug', $slug)->where('category_type', $type)
+			->get()
+			->row_array();
+		return $data;	
 	}
 }

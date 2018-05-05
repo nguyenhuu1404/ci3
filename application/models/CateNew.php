@@ -1,7 +1,7 @@
 <?php
 if(!defined('BASEPATH')) exit('No direct script access allowed');
 class CateNew extends Grocery_Model {
-	protected $table = 'cat_news';
+	public $table = 'cat_news';
 	public function getAll(){
 		$data = $this->db
 			->select('id, name')

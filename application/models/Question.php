@@ -1,7 +1,7 @@
 <?php
 if(!defined('BASEPATH')) exit('No direct script access allowed');
 class Question extends Grocery_Model {
-	protected $table = 'questions';
+	public $table = 'questions';
 	
 	public function getAnswerByQuestionId($id){
 		$data = $this->db->select('*')->from('answers')->where('question_id', $id)->get()->result_array();

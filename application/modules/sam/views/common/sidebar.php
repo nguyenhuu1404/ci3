@@ -1,4 +1,4 @@
-<div class="sidebar">
+<div class="sidebar mb-3">
     <div class="head">
       <i class="icon fa fa-align-justify fa-fw"></i> Danh mục
     </div>

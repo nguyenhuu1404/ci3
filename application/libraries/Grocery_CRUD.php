@@ -1211,6 +1211,7 @@ class grocery_CRUD_Model_Driver extends grocery_CRUD_Field_Types
 
     protected function _unique_field_name($field_name)
     {
+    	
     	return 's'.substr(md5($field_name),0,8); //This s is because is better for a string to begin with a letter and not a number
     }
 

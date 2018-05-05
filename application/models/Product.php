@@ -1,11 +1,11 @@
 <?php
 if(!defined('BASEPATH')) exit('No direct script access allowed');
 class Product extends Grocery_Model {
-	protected $table = 'products';
+	public $table = 'products';
 	
 	public function getProductByCategoryId($categoryId){
 		$data = $this->db->select('*')->from($this->table)->like("CONCAT(',',category_ids,',')", $categoryId)
-		->limit(4)->get()->result_array();
+		->limit(4)->order_by('ordering asc')->get()->result_array();
 		return $data;
 	}
 	public function getProductByCategoryIds($ids){
@@ -32,8 +32,8 @@ class Product extends Grocery_Model {
 		->limit(4)->get()->result_array();
 		return $data;
 	}
-	public function getSaleProduct(){
-		$data = $this->db->select('*')->from($this->table)->where('sale', 1)
+	public function getViewProduct(){
+		$data = $this->db->select('*')->from($this->table)->order_by('views desc')
 		->limit(4)->get()->result_array();
 		return $data;
 	}
@@ -42,5 +42,32 @@ class Product extends Grocery_Model {
 		->limit(4)->get()->result_array();
 		return $data;
 	}
+	public function getImageById($id){
+		$data = $this->db->select('image')->from($this->table)->where('id', $id)->get()->row_array();
+		return $data['image'];
+	}
+	
+	public function getTagBySlug($slug, $type){
+		$data = $this->db->select('id, title, name, description')
+			->from('tags')
+			->where('slug', $slug)->where('type', $type)
+			->get()
+			->row_array();
+		return $data;	
+	}
+	public function getTags($tags){
+		$tags = explode(',', $tags);
+		$dataTags = $this->db->select('id, slug, name')->from('tags')->where_in('id', $tags)->get()->result_array();
+		return $dataTags;
+	}
+	public function getRelateProduct($id, $categoryIds){
+		$data = $this->db->from($this->table)->where('category_ids', $categoryIds)->where('id !=', $id)->order_by('rand()')->limit(4)->get()->result_array();
+		return $data;
+	}
+	public function getGalleries($productId){
+		$data = $this->db->from('product_galleries')->where('product_id', $productId)->get()->result_array();
+		return $data;
+	}
+	
 
 }

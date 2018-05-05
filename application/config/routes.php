@@ -50,13 +50,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'sam/home';
+$route['my-account.html'] = 'sam/users/login';
+
 $route['san-pham.html'] = 'sam/products';
-$route['category/(:any).html'] = 'sam/news/category/$1';
+$route['index.html'] = 'sam/home';
+$route['gio-hang.html'] = 'sam/cart/showCart';
+$route['thanh-toan.html'] = 'sam/payment/checkout';
 $route['san-pham/(:any).html'] = 'sam/products/detail/$1';
 $route['danh-muc/(:any).html'] = 'sam/products/category/$1';
+$route['tu-khoa/(:any).html'] = 'sam/products/tag/$1';
+
 $route['lien-he.html'] = 'sam/page/contact';
 $route['ve-chung-toi.html'] = 'sam/page/about';
 
+$route['category/(:any).html'] = 'sam/news/category/$1';
+$route['tag/(:any).html'] = 'sam/news/tag/$1';
 $route['(:any).html'] = 'sam/news/detail/$1';
 
 $route['admin/login'] = 'admin/verify/login';

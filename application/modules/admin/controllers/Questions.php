@@ -32,6 +32,7 @@ class Questions extends AdminGrocery {
 		$crud->field_type('description', 'text');
 		
 		$output = $crud->render();
+		//debug($crud);
 		$this->_example_output($output);
 
 	}
@@ -43,6 +44,7 @@ class Questions extends AdminGrocery {
 		$this->data['itemAnswers'] = $this->question->getAnswerByQuestionId($questionId);
 		$this->data['question'] = $this->question->getOne($questionId);
 		$this->load->view('questions/answer', $this->data);
+		
 		
 	}
 	public function addAnsers(){

@@ -11,7 +11,22 @@
 					<a rel="nofollow" href="https://plus.google.com/100710732944860905712" class="follow-google" target="_blank"><i class="fa fa-google"></i></a>
 					<a rel="nofollow" href="https://www.pinterest.com/tuthuocnam158/" class="follow-pinterest" target="_blank"><i class="fa fa-pinterest"></i></a>
 				</div>
-				<a class="float-right fs075 pr-3 text-uppercase" href="http://tuthuocnam.com/my-account" class="">Đăng nhập / Đăng kí </a>
+				<?php if(!$this->session->userdata('userData')){ ?>
+					<a class="float-right text-white fs075 pr-3 text-uppercase" href="/my-account.html">Đăng nhập / Đăng kí </a>
+				<?php } else{
+					echo '<div class="dropdown show">
+					  <a class="btn mt-1 text-white pull-right dropdown-toggle" href="#" role="button" id="account" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    Tài khoản
+					  </a>
+
+					  <div class="dropdown-menu account" aria-labelledby="account">
+					    <a class="dropdown-item" href="/my-account.html">Bảng điều khiển</a>
+					    <a class="dropdown-item" href="/sam/users/orders">Đơn hàng</a>
+					     <a class="dropdown-item" href="/sam/users/edit">Trang cá nhân</a>
+					    <a class="dropdown-item" href="/sam/users/logout">Đăng xuất</a>
+					  </div>
+					</div>'	;
+				} ?>	
 				
 			</div>
 		</div>
@@ -22,30 +37,28 @@
 	<div class="container">
 		<div class="d-flex flex-row align-items-center">
 			<div class="p-2 d-none d-sm-block">
-				<h1 class="text-hide logo">Sâm ngọc linh</h1>
+				<a href="/"><h1 class="text-hide logo"><?php if(isset($name)){ echo $name; }else{ echo 'Sâm ngọc linh'; }?></h1></a>
 			</div>
 			<div class="p-2 ml-auto d-none d-sm-block">
 				
-				<i class="fa fa-paper-plane"></i> ha.vuvu25@gmail.com
+				<i class="fa fa-paper-plane text-info"></i> tuthuocnam158@gmail.com &nbsp; &nbsp;
 		
-				<a href="skype:huunv90" rel="nofollow"><i class="fa fa-skype" style="color: #00bfee;"></i> huunv90 </a> 
+				<a href="skype:huunv90" rel="nofollow"><i class="fa cl-skype fa-skype" ></i> huunv90 </a> 
 
 			</div>
-			<div class="p-2"><i class="fa fa-phone" style="color: #f28705;"></i> 0988.588.197</div>
+			<div class="p-2"><i class="fa text-warning fa-phone"></i> 0986.654.606</div>
 				
 			<div class="ml-auto p-2">
 				<div class="dropdown">
-					<div id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="pointer" >
+					<button  id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-warning" >
 					 	<i class="fa fa-shopping-cart"></i>
-					 	<span class="num-cart">0</span> 
+					 	<span id="num-cart" class="num-cart"><?=$this->cart->total_items();?></span> 
 					 	<span class="d-none d-sm-inline">Giỏ hàng</span>		
-			 		</div>
+			 		</button >
 				  
-				  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
-				    <button class="dropdown-item" type="button">Hướng dẫn mua hàng</button>
-				    <button class="dropdown-item" type="button">hướng đẫn thanh toán</button>
-				    <button class="dropdown-item" type="button">Something else here</button>
-				  </div>
+				  	<div id="box-cart" class="dropdown-menu m-0 p-0 box-shadow dropdown-menu-right" aria-labelledby="dropdownMenu2">
+				    	<?php $this->load->view('cart/cart'); ?>
+				  	</div>
 				</div>
 
 				
@@ -73,9 +86,14 @@
 			?>
 		      
 		    </ul>
-		    <form class="form-inline my-2 my-lg-0">
-		      <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm..." aria-label="Search">
-		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+		    <form method="get" action="/sam/products/search" class="form-inline my-2 my-lg-0">
+				<div class="input-group">
+			  		<input name="name" class="form-control" type="search" placeholder="Tìm kiếm..." aria-label="Search">
+			  		<div class="input-group-append">
+			    		<button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+			  		</div>
+				</div>
+
 		    </form>
 		  </div>
 		</nav>

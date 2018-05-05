@@ -3,7 +3,7 @@
 class Users extends AdminGrocery {
 	protected $table = 'users';
 	protected $subject = 'Quản lí người dùng';
-	protected $columns = 'name, username, role_id, phone, email';
+	protected $columns = 'fullname, username, role_id, phone, email';
 
 	public function index(){
 		$this->load->model('user');

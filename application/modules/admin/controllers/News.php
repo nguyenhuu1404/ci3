@@ -37,7 +37,8 @@ class News extends AdminGrocery {
 		$file_uploaded = $field_info->upload_path.'/'.$imageName; 
 		 
 		$this->image_moo->load($file_uploaded)->save($file_uploaded, true)
-		->resize(81,81)->save($field_info->upload_path.'/thumb/'.$imageName, true);
+		->resize(260,170)->save($field_info->upload_path.'/category/'.$imageName, true)
+		->resize_crop(84,84)->save($field_info->upload_path.'/thumb/'.$imageName, true);
 
 		return true;
 	}

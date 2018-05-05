@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-md-3">
-				<img src="/assets/sam/images/logo.png" />
+				<img src="/assets/sam/images/blank.gif" data-echo="/assets/sam/images/logo.png" alt="Tủ thuốc nam" title="Tủ thuốc nam" />
 				<p>Luôn bảo vệ sức khỏe của bạn, uy tín, chất lượng trên từng sản phẩm!</p>
 
 			</div>
@@ -17,8 +17,7 @@
 			<div class="col-12 col-md-3">
 				<h3 class="title-new fs09">Thông tin hữu ích</h3>
 				<ul class="usefull p-0">
-					<li><a href="/yeu-cau-tu-van">Sản phẩm yêu cầu tư vấn</a></li>
-					<li><a href="/chinh-sach-doi-tra-hang">Chính sách đổi, trả hàng</a></li>
+					<li><a href="/chinh-sach-doi-tra-hang.html">Chính sách đổi, trả hàng</a></li>
 				</ul>
 				
 			</div>
@@ -37,7 +36,7 @@
 <div class="full footer-bottom">
 	<div class="container fs08">
 		© Thiết kế website 0973.537.381
-		<img class="pull-right" src="/assets/sam/images/phuong-thuc-thanh-toan.jpg" alt="thanh toán"/>
+		<img src="/assets/sam/images/blank.gif" class="pull-right" data-echo="/assets/sam/images/phuong-thuc-thanh-toan.jpg" alt="thanh toán"/>
 	</div>
 	
 </div>

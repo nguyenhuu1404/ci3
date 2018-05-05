@@ -1,16 +1,17 @@
 <?php
 class Grocery_Model extends MY_Model{
-	protected $table;
-	protected $selectFields = '*';
-	protected $orderBy = 'id desc';
-	protected $conditions = false;
-	protected $orConditions = false;
-	protected $likeConditions = false;
-	protected $joins = false;
+	public $table;
+	public $selectFields = '*';
+	public $orderBy = 'id desc';
+	public $conditions = false;
+	public $orConditions = false;
+	public $likeConditions = false;
+	public $joins = false;
 	public $pageSize = 10;
 	public $pageNum = 0;
 	public $groupBy = false;
 	public $having = false;
+	public $likeTexts = false;
 
 	public function getItems(){
 		$query = $this->db->select($this->selectFields)->from($this->table);
@@ -25,6 +26,12 @@ class Grocery_Model extends MY_Model{
 		if($this->likeConditions){
 			foreach ($this->likeConditions as $field => $value) {
 				$query->like($field, ','.$value.',');
+			}
+			
+		}
+		if($this->likeTexts){
+			foreach ($this->likeTexts as $field => $value) {
+				$query->like($field, $value);
 			}
 			
 		}
@@ -57,6 +64,12 @@ class Grocery_Model extends MY_Model{
 		if($this->likeConditions){
 			foreach ($this->likeConditions as $field => $value) {
 				$query->like($field, ','.$value.',');
+			}
+			
+		}
+		if($this->likeTexts){
+			foreach ($this->likeTexts as $field => $value) {
+				$query->like($field, $value);
 			}
 			
 		}
@@ -134,9 +147,40 @@ class Grocery_Model extends MY_Model{
 					 ->row_array();
 		return $data;			 
 	}
+	public function getOneField($field, $value, $table, $selectFields=false){
+		$query = $this->db;
+		if($selectFields){
+			$query->select($selectFields);
+		}			 	
+		$query->from($table)
+		->where($field, $value);			 
+		$data = $query->get()->row_array();
+		return $data;			 
+	}
 	public function getDataByField($field, $table, $id){
 		$data = $this->db->select('*')->from($table)->where($field, $id)->get()->result_array();
 		return $data;
+	}
+	public function getMaxField($field){
+		$data = $this->db->select_max($field, 'max')->get($this->table)->row_array();
+		return $data['max'];
+	}
+	public function getMinField($field){
+		$data = $this->db->select_min($field, 'min')->get($this->table)->row_array();
+		return $data['min'];
+	}
+	public function save($table, $data, $id=false){
+		if($id){
+			$this->db->where('id', $id);
+			$this->db->update($table, $data);	
+		}else{
+			$this->db->insert($table, $data);
+			$id = $this->db->insert_id(); 
+		}
+		return $id;
+	}
+	public function insertMany($table, $data){
+		$this->db->insert_batch($table, $data);		
 	}
 }	
 ?>

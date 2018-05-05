@@ -3,9 +3,9 @@
 class Products extends AdminGrocery {
 	protected $table = 'products';
 	protected $subject = 'Sản phẩm';
-	protected $columns = 'id, name, price, created';
-	protected $add_fields = 'name, title, alias, description, brief, price, price_sale, image, content, category_ids, tag_ids, outstock, status, hot, new, recommend, sale, created, createdId';
-	protected $edit_fields = 'name, title, alias, description, brief, price, price_sale, image, content, category_ids, tag_ids, outstock, status, hot, new, recommend, sale, modified, modifiedId, modifiedIds';
+	protected $columns = 'id, name, image, price, created';
+	protected $add_fields = 'name, title, slug, ordering, description, brief, price, price_sale, image, content, category_ids, tag_ids, outstock, status, hot, new, recommend, sale, created, createdId';
+	protected $edit_fields = 'name, title, slug, ordering, description, brief, price, price_sale, image, content, category_ids, tag_ids, outstock, status, hot, new, recommend, sale, modified, modifiedId, modifiedIds';
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('product');
@@ -47,15 +47,6 @@ class Products extends AdminGrocery {
 		array('1' => 'Đã kích hoạt', '0' => 'Chưa kích hoạt'));
 
 		$crud->field_type('description', 'text');
-
-		$image_crud = new image_CRUD();
-	
-		$image_crud->set_primary_key_field('id');
-		$image_crud->set_url_field('url');
-		$image_crud->set_table('product_gallery')
-		->set_relation_field('product_id')
-		->set_ordering_field('ordering')
-		->set_image_path('assets/uploads');
 		
 		$output = $crud->render();
 		$this->_example_output($output);

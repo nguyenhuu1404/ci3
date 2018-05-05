@@ -21,12 +21,14 @@
                      $date = date('d-m-Y', strtotime($new['created']));
                  ?>
                   <div class="row mb-2">
-                    <div class="col-12 col-md-6">
-                        <img class="img-fluid" src="/assets/sam/images/nam-linh-chi-do-han-quoc.png"/>
+                    <div class="col-12 pl-2 pr-0 mb-1 col-md-5">
+                      <a href="/<?=$new['slug'];?>.html">
+                        <img src="/assets/sam/images/blank.gif" title="<?=$new['title']?>;" alt="<?=$new['title'];?>" class="img-fluid" data-echo="/assets/sam/images/news/thumb/<?=$new['image'];?>"/>
+                      </a>  
                     </div>
-                    <div class="col-12 pl-0 col-md-6">
-                      <h3 class="fs09 font-weight-bold">
-                      <a href="<?=$new['slug'];?>.html"><?=$new['name'];?></a>
+                    <div class="col-12 pl-2 pr-0 col-md-7">
+                      <h3 class="fs09 m-0">
+                      <a href="/<?=$new['slug'];?>.html"><?=$new['name'];?></a>
                       </h3>
                       <span class="post-date"><?=$date; ?></span>
                     </div>
@@ -41,12 +43,14 @@
                     
                  ?>
                 <div class="row mb-2">
-                  <div class="col-12 col-md-6">
-                      <img class="img-fluid" src="/assets/sam/images/nam-linh-chi-do-han-quoc.png"/>
+                  <div class="col-12 pl-2 pr-0 mb-1 col-md-5">
+                    <a href="/<?=$new['slug'];?>.html">
+                      <img src="/assets/sam/images/blank.gif" title="<?=$new['title']?>;" alt="<?=$new['title'];?>" class="img-fluid" data-echo="/assets/sam/images/news/thumb/<?=$new['image'];?>"/>
+                     </a> 
                   </div>
-                  <div class="col-12 pl-0 col-md-6">
-                    <h3 class="font-weight-bold fs09">
-                    <a href="<?=$new['slug'];?>.html"><?=$new['name'];?></a>
+                  <div class="col-12 pl-2 pr-0 col-md-7">
+                    <h3 class="m-0 fs09">
+                    <a href="/<?=$new['slug'];?>.html"><?=$new['name'];?></a>
                     </h3>
                     <span class="post-date"><?=$date; ?></span>
                   </div>

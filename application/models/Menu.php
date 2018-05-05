@@ -1,7 +1,7 @@
 <?php
 if(!defined('BASEPATH')) exit('No direct script access allowed');
 class Menu extends Grocery_Model {
-	protected $table = 'menus';
+	public $table = 'menus';
 	public function getMenuByRole($roleId){
 		if($roleId == 1){
             $menus = $this->db

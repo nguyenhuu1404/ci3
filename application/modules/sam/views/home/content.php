@@ -1,3 +1,38 @@
+<script type="application/ld+json">
+ { "@context": "http://schema.org",
+ "@type": "Organization",
+ "name": "Sâm ngọc linh",
+ "legalName" : "Tủ thuốc nam Llc",
+ "url": "<?=site_url();?>",
+ "logo": "<?php echo base_url('assets/sam/images/logo.png'); ?>",
+ "foundingDate": "2017",
+ "founders": [
+ {
+ "@type": "Person",
+ "name": "Huunv"
+ }
+ ],
+ "address": {
+ "@type": "PostalAddress",
+ "streetAddress": "Nhà số 6, ngõ 115, Nguyễn khang",
+ "addressRegion": "FL",
+ "postalCode": "1000",
+ "addressCountry": "VN"
+ },
+ "contactPoint": {
+ "@type": "ContactPoint",
+ "contactType": "customer support",
+ "telephone": "+84973537381",
+ "email": "tuthuocnam1508@gmail.com"
+ },
+ "sameAs": [ 
+ "http://www.facebook.com/tuthuocnam1508",
+ "http://www.twitter.com/tuthuocnam",
+ "http://pinterest.com/tuthuocnam1508/",
+ "https://plus.google.com/100710732944860905712"
+ ]}
+</script>
+
 <div class="full mb-3">
     <div class="container">
       <div class="row">
@@ -8,7 +43,7 @@
               <div id="carouselExampleControls" class="carousel full slide mb-2" data-ride="carousel">
                   <div class="carousel-inner">
                       <div class="carousel-item active">
-                      <img class="d-block w-100" src="/assets/sam/images/slider.jpg" alt="First slide">
+                      <img class="d-block w-100" src="/assets/sam/images/slider.jpg" alt="An cung ngưu hoàng hoàn" title="An cung ngưu hoàng hoàn" />
                       </div>
                   
                   </div>
@@ -70,9 +105,9 @@
                   
                ?>
               <div class="col-12 col-md-3">
-                  <div class="product-img position-relative">
-                    <a href="/san-pham/<?=$val['alias'];?>.html">
-                      <img class="img-fluid" src="/assets/sam/images/products/home/<?=$val['image'] ?>" title="<?=$val['name'];?>" alt="<?=$val['name'];?>" />
+                  <div class="product-img text-center position-relative">
+                    <a href="/san-pham/<?=$val['slug'];?>.html">
+                      <img class="img-fluid" src="/assets/sam/images/blank.gif" data-echo="assets/sam/images/products/home/<?=$val['image']; ?>" title="<?=$val['name'];?>" alt="<?=$val['name'];?>" />
                     </a>
                     <?php if($val['hot'] == 1){ ?>
                       <div class="tag hot"><span>hot</span></div>
@@ -80,21 +115,25 @@
                     <?php if($val['new'] == 1){ ?>
                       <div class="tag new"><span>new</span></div>
                     <?php } ?> 
-                    <?php if($val['price']){ ?>
+                    <?php if($val['price_sale']){ ?>
                       <div class="tag sale"><span>sale</span></div>
                     <?php } ?>   
                   </div>
-                  <h2 class="name"><a href="/san-pham/<?=$val['alias'];?>.html"><?=$val['name']?></a></h2>
+                  <h3 class="name"><a href="/san-pham/<?=$val['slug'];?>.html"><?=$val['name']?></a></h3>
                   <p class="mb-2"><?=$val['brief']?></p>
                   <div class="product-price">
+                  <?php if($val['outstock'] == 1){
+                    echo '<span class="price">Hết hàng</span>';
+                  }else{
+                    ?>
                     <?php if($val['price_sale'] && $val['price']){ ?> 
-                      <span class="price"> <?= formatPrice($val['price_sale']); ?> đ </span> 
-                      <span class="price-before-discount"><?= formatPrice($val['price']); ?> đ</span>
+                      <span class="price"> <?= formatPrice($val['price_sale']); ?> </span> 
+                      <span class="price-before-discount"><?= formatPrice($val['price']); ?></span>
                      <?php } else if($val['price']){
-                          echo '<span class="price">'. formatPrice($val['price']) .' đ </span>'; 
+                          echo '<span class="price">'. formatPrice($val['price']) .' </span>'; 
                       }else{
                           echo '<span class="price">Giá liên hệ</span>';
-                        } ?>  
+                        } }?>  
                   </div>
                   
               </div>
@@ -111,63 +150,10 @@
         
         <?php $this->load->view('common/news'); ?>
         <!--end box new-->
-
-        <div class="box-shadow box-news bg-white mb-3 p-3">
-          <h3 class="title-new">Ý kiến khách hàng</h3>
-
-          <div id="tesmonial" class="carousel slide" data-ride="carousel">
-
-            <!-- Indicators -->
-            <ul class="carousel-indicators">
-              <li data-target="#demo" data-slide-to="0" class="active"></li>
-              <li data-target="#demo" data-slide-to="1"></li>
-              <li data-target="#demo" data-slide-to="2"></li>
-            </ul>
-
-            <!-- The slideshow -->
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                 <div class="card">
-                  <img class="w-50 mx-auto mt-3 rounded-circle" src="/assets/sam/images/thao-chi.jpg" alt="Vũ Thị Thanh Thảo">
-                  <div class="card-body">
-                    
-                    <p class="card-text text-center">Tủ thuốc nam là sự lựa chọn uy tín, tôi rất hài lòng với các sản phẩm ở đây. Các sản phẩm của tủ thuốc nam rất tốt cho sức khỏe của tôi.</p>
-                    <h5 class="card-title text-center">Vũ Thị Thanh Thảo</h5>
-                    
-                  </div>
-                </div>
-
-              </div>
-              <div class="carousel-item">
-                  <div class="card">
-                    <img class="w-50 mx-auto mt-3 rounded-circle" src="/assets/sam/images/tran-van-hieu.jpg" alt="Khách hàng mua sâm ngọc linh">
-                    <div class="card-body">
-                      
-                      <p class="card-text text-center">Tôi đã sử dụng sâm ngọc linh trong nhiều năm nay. Sâm giúp chứng huyết áp của tôi dần cải thiện và sức khỏe tôi phục hồi nhanh chóng.</p>
-                      <h5 class="card-title text-center">Trần Văn Hiếu</h5>
-                      
-                    </div>
-                  </div>
-              </div>
-              <div class="carousel-item">
-                  <div class="card">
-                    <img class="w-50 mx-auto mt-3 rounded-circle" src="/assets/sam/images/lai-thi-my-dung.jpg" alt="Lại Thị Mỹ Dung">
-                    <div class="card-body">
-                      
-                      <p class="card-text text-center">Tôi rất hài lòng khi mua Sâm ngọc linh tại tủ thuốc nam. Từ khi sử dụng sâm ngọc linh ngâm mật ong cơ thể đã có nhiều chuyển biến tốt.</p>
-                      <h5 class="card-title text-center">Lại Thị Mỹ Dung</h5>
-                      
-                    </div>
-                  </div>
-              </div>
-            </div>
-
-          </div>
-          
-
-         
-        </div>
-
+        <?php $this->load->view('common/support'); ?>
+        <?php $this->load->view('common/customer'); ?>
+        
+        <?php //$this->load->view('common/fanpage'); ?>
         
       </div>
       <!-- end right content-->
