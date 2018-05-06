@@ -272,11 +272,6 @@ if($product['price_sale']){
 						<span class="share-title">Chia sẻ trên mạng xã hội</span>
 						<ul class="menu-social-icons pull-right m-0">
 							
-							<li>
-								<div id="fb-root"></div>
-								<div class="fb-like" data-href="/san-pham/<?=$product['slug'];?>.html" data-layout="button_count"  data-size="small"  data-share="false"></div>
-							</li>
-							
 							<li> 
 								<a rel="nofollow" href="https://twitter.com/share?url=<?=site_url();?>san-pham/<?=$product['slug'];?>.html&amp;text=<?=urlencode($product['name']);?>" class="title-toolip" title="Twitter" target="_blank"> <i class="fa fa-twitter"></i> </a>
 							</li>
@@ -304,7 +299,7 @@ if($product['price_sale']){
 				<?=$product['content'];?>
 			</div>
 			<div class="comment-facebook">
-				
+				<?php $this->load->view('common/comment'); ?>
 			</div>
 		</div>
 		<?php if($relateProducts){ ?>

@@ -47,6 +47,8 @@ class News extends FrontendController{
 			$this->data['hotProducts'] = $this->product->getHotProduct();
 			$this->data['viewProducts'] = $this->product->getViewProduct();
 			$this->data['recommendProducts'] = $this->product->getRecommendProduct();
+			$this->load->model('tag');
+			$this->data['tags'] = $this->tag->getTags($new['tag_ids']);
 			$this->data['new'] = $new;
 			$this->data['relateNews'] = $this->new_model->getRelateNews($new['id'], $new['category_id']);
 			$this->data['newCategories'] = $this->category->getNewcategories();

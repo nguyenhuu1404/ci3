@@ -55,11 +55,7 @@ class Product extends Grocery_Model {
 			->row_array();
 		return $data;	
 	}
-	public function getTags($tags){
-		$tags = explode(',', $tags);
-		$dataTags = $this->db->select('id, slug, name')->from('tags')->where_in('id', $tags)->get()->result_array();
-		return $dataTags;
-	}
+	
 	public function getRelateProduct($id, $categoryIds){
 		$data = $this->db->from($this->table)->where('category_ids', $categoryIds)->where('id !=', $id)->order_by('rand()')->limit(4)->get()->result_array();
 		return $data;

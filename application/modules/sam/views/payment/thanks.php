@@ -22,7 +22,7 @@
 								echo '<div class="alert alert-primary">Đơn hàng của bạn đang được vận chuyển.</div>';
 								break;
 							case 'on-hold':
-								echo '<div class="alert alert-warning">Đơn hàng của bạn đang chờ thanh toán.</div>';
+								echo '<div class="alert alert-warning">Đơn hàng của bạn đang chờ thanh toán. Hãy thanh toán cho chúng tôi theo thông tin tài khoản ngân hàng dưới đây.</div>';
 								break;				
 							
 							default:
@@ -30,9 +30,20 @@
 								break;
 						}
 					?>
-						
-					
-					
+					<?php if($order['payment_method'] == 'bacs'){ ?>
+					<div class="card mb-3">
+						<h3 class="card-header fs13 text-white bg-info">Tài khoản ngân hàng của chúng tôi</h3>
+						<div class="card-body">
+							<div>Số tài khoản: <b>007704060046435</b></div>
+							<div>Chủ tài khoản: <b>NGUYEN VAN HUU</b></div>
+							<div>Ngân hàng: <b>Vib(Ngân hàng quốc tế)</b></div>
+							<div>Chi nhánh: <b>Thanh Xuân – Hà Nội</b></div>
+							<div>
+								Nội dung chuyển khoản: <b>Họ tên – Mã đơn hàng. Ví dụ: Nguyen Van A - 10</b>		
+							</div>
+					    </div>
+					</div>  
+					<?php } ?>
 					<div class="card mb-3">
 					  <h3 class="card-header fs13 text-white bg-info">Nội dung đơn hàng</h3>
 					  <div class="card-body">
@@ -142,7 +153,7 @@
 			</div>	
 
 			<div class="col-12 col-md-3">
-				<?php $this->load->view('common/support'); ?>
+				<?php $this->load->view('common/rightcontent'); ?>
 			</div>
 			
 		</div>

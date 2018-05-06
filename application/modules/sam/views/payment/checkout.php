@@ -164,7 +164,7 @@
         	</div>
 
         	<div class="col-md-3 col-12">
-				<?php $this->load->view('common/support'); ?>
+				<?php $this->load->view('common/rightcontent'); ?>
         	</div>
     	</div>
    </div>

@@ -18,7 +18,8 @@ class Orders extends AdminGrocery {
 			'cancelled'  => 'Hủy',
 			'refunded'	 => 'Hoàn tiền',
 			'shipping'	 => 'Đang vận chuyển',
-			'on-hold'    => 'Chờ thanh toán'
+			'on-hold'    => 'Chờ thanh toán',
+			'received'    => 'Đã nhận'
 		);
 
 		$this->editFields();

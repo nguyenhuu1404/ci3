@@ -7,9 +7,14 @@
 			    </a>
 			    <div class="card-body">
 				  						    
-			      <h2 class="fs13  card-title">
+			      <h2 class="fs13 mb-2 card-title">
 			      <a class="color-text" href="/'.$new['slug'].'.html">	'.$new['name'].'</a>
 			      </h2>
+
+			      <div class="mb-2 fs09">
+					<span class="post-date fs09 main-color">'.date('d-m-Y', strtotime($new['created'])).'</span> &nbsp;/ &nbsp;
+					<span class="views-count main-color fs09">'.$new['views'].'</span>
+				  </div>
 			      
 			      <p class="card-text">'.$new['brief'].'</p>
 			    </div>

@@ -14,6 +14,7 @@ body{font-family: roboto; background: #f3f3f3;}
 .social a{color: white; }
 .account a{line-height: 24px;}
 .fs075{font-size: 0.75rem !important;}
+.fs07{font-size: 0.71rem !important;}
 .fs08{font-size: 0.8rem !important;}
 .fs13{font-size: 1.3rem;}
 .fs09{font-size: 0.9rem !important;}
@@ -39,6 +40,13 @@ body{font-family: roboto; background: #f3f3f3;}
     text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 0.5px;
+}
+.views-count:before {
+    font-family: 'FontAwesome';
+    content: '\f06e';
+    display: inline-block;
+    margin-right: 4px;
+    font-size: 1rem;
 }
 .sidebar-menu{margin: 0px; padding: 0px;}
 .sidebar-menu li{display: block; list-style: none; width: 100%; border-bottom: 1px solid #eaeaea; position: relative;}
@@ -175,7 +183,7 @@ body{font-family: roboto; background: #f3f3f3;}
     color: white;
 }
 .breadcrumb a, .box-news a, .name a{color: #212529;}
-a.color-text:hover, .breadcrumb a:hover, .sidebar a:hover, .main-hover:hover, .box-news a:hover, .name a:hover{text-decoration: none; color: #f22738;}
+.menu-social-icons a:hover, .tagged_as a:hover, a.color-text:hover, .breadcrumb a:hover, .sidebar a:hover, .main-hover:hover, .box-news a:hover, .name a:hover{text-decoration: none; color: #f22738;}
 .usefull li {list-style: none; width: 100%;}
 .usefull a{color: white;}
 .tagcloud a {

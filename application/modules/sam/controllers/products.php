@@ -71,7 +71,8 @@ class Products extends FrontendController{
 			$views = $product['views'] + 1;
 			$this->product->save('products', array('views' => $views), $product['id']);
 
-			$this->data['tags'] = $this->product->getTags($product['tag_ids']);
+			$this->load->model('tag');
+			$this->data['tags'] = $this->tag->getTags($product['tag_ids']);
 			$this->data['relateProducts'] = $this->product->getRelateProduct( $product['id'],  $product['category_ids']);
 
 			$this->data['galleries'] = $this->product->getGalleries($product['id']);

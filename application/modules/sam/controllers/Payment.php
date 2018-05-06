@@ -9,10 +9,12 @@ class Payment extends FrontendController{
 	public function checkout(){
 		if($this->cart->total_items() > 0){
 			$this->data['layout'] = 'payment/checkout';
-			$this->data['title'] = 'Thanh toán';
+			$this->data['title'] = 'Trang thanh toán khi bạn mua hàng tại tủ thuốc nam';
+			$this->data['name'] = 'Thanh toán';
 			$this->data['seoType'] = 'article';
-			$this->data['description'] = 'Thanh toán cực kì dễ dàng với tủ thuốc nam.';
+			$this->data['description'] = 'Trang thanh toán là nơi bạn nhập các thông tin cá nhân cần thiết để chúng tôi liên hệ xử lí đơn hàng của bạn khi bạn mua hàng tại tủ thuốc nam.';
 			$this->load->library('form_validation');
+			$this->load->model('new_model');
 			if($this->input->post()){
 				
 
@@ -48,7 +50,10 @@ class Payment extends FrontendController{
 				$this->form_validation->set_rules($config);
 
 				if ($this->form_validation->run() == FALSE){
-	                    $this->load->view($this->data['masterPage'], $this->data);
+					$this->data['newCategories'] = $this->category->getNewcategories();
+					$this->data['topNews'] = $this->new_model->getTopNews();
+					$this->data['newNews'] = $this->new_model->getNewNews(); 
+	                $this->load->view($this->data['masterPage'], $this->data);
 	            }else{
 
 	            	if($this->cart->total_items() > 0){
@@ -65,12 +70,14 @@ class Payment extends FrontendController{
 		                }
 		                $dataOrder['total_price'] = $this->cart->total();
 		                $dataOrder['ip'] = $this->input->ip_address();
-		                $dataOrder['created'] = date('Y-m-d H:i:s', time());
-		                if($payment_method == 'bacs'){
+		                $dataOrder['created'] = date('Y-m-d H:i:s', time());    
+		                
+						 if($payment_method == 'bacs'){
 		                	$dataOrder['order_status'] = 'on-hold';
 		                }else if($payment_method =='cod'){
-		                	$dataOrder['order_status'] = 'processing';
+		                	$dataOrder['order_status'] = 'received';
 		                }
+						
 		                $this->load->library('encryption');
 						$key = bin2hex($this->encryption->create_key(16));
 						$dataOrder['key'] = $key;
@@ -101,6 +108,9 @@ class Payment extends FrontendController{
 
 				
 			}
+			$this->data['newCategories'] = $this->category->getNewcategories();
+			$this->data['topNews'] = $this->new_model->getTopNews();
+			$this->data['newNews'] = $this->new_model->getNewNews(); 
 			 $this->load->view($this->data['masterPage'], $this->data);
 			
 		}else{
@@ -120,8 +130,11 @@ class Payment extends FrontendController{
 			$this->data['seoType'] = 'article';
 			$this->data['order'] = $order;
 			$this->data['products'] = $this->order->getOrderItems($orderId);
-		
-
+			
+			$this->load->model('new_model');
+			$this->data['newCategories'] = $this->category->getNewcategories();
+			$this->data['topNews'] = $this->new_model->getTopNews();
+			$this->data['newNews'] = $this->new_model->getNewNews(); 
 			$this->load->view($this->data['masterPage'], $this->data);	
 		}else{
 			redirect('/');

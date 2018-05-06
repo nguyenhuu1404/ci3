@@ -9,8 +9,8 @@ class Page extends FrontendController{
 		$this->load->library('form_validation');
 		$this->data['layout'] = 'page/contact';
 		$this->data['seoType'] = 'article';
-		$this->data['title'] = 'Liên hệ';
-		$this->data['description'] = 'Liên hệ ngay với tủ thuốc nam. Chúng tôi sẽ giúp bạn giúp đáp mọi thắc mắc về vấn đề sức khỏe';
+		$this->data['title'] = 'Liên hệ mua sâm ngọc linh - nấm linh chi - nấm chaga - đông trùng hạ thảo';
+		$this->data['description'] = 'Liên hệ ngay với tủ thuốc nam. Chúng tôi sẽ giúp bạn giải đáp mọi thắc mắc về vấn đề sức khỏe!';
 		$this->data['newProducts'] = $this->product->getNewProduct();
 		$this->data['hotProducts'] = $this->product->getHotProduct();
 		$this->data['viewProducts'] = $this->product->getViewProduct();
@@ -83,8 +83,8 @@ class Page extends FrontendController{
 	public function about(){
 		
 		$this->data['layout'] = 'page/about';
-		$this->data['title'] = 'Về chúng tôi';
-		$this->data['description'] = 'Giới thị về tủ thuốc nam. Trang web chuyên cung cấp thông tin về sức khỏe.';
+		$this->data['title'] = 'Trang giới thiệu về tủ thuốc nam website uy tín về sức khỏe.';
+		$this->data['description'] = 'Tủ thuốc nam chuyên cung cấp các thảo dược quý từ thiên nhiên giúp bảo vệ và bồ bổ sức khỏe. Chúng tôi luôn là địa chỉ đáng tin cậy cho sức khỏe của bạn. ';
 		$this->data['seoType'] = 'article';
 		
 		$this->data['newProducts'] = $this->product->getNewProduct();

@@ -38,6 +38,22 @@
 										}
 									?></b>
 					</div>
+					
+					<?php if($order['payment_method'] == 'bacs'){ ?>
+					<div class="card mb-3">
+						<h3 class="card-header fs13 text-white bg-info">Tài khoản ngân hàng của chúng tôi</h3>
+						<div class="card-body">
+							<div>Số tài khoản: <b>007704060046435</b></div>
+							<div>Chủ tài khoản: <b>NGUYEN VAN HUU</b></div>
+							<div>Ngân hàng: <b>Vib(Ngân hàng quốc tế)</b></div>
+							<div>Chi nhánh: <b>Thanh Xuân – Hà Nội</b></div>
+							<div>
+								Nội dung chuyển khoản: <b>Họ tên – Mã đơn hàng. Ví dụ: Nguyen Van A - 10</b>		
+							</div>
+					    </div>
+					</div>  
+					<?php } ?>
+					
 					<?php if(count($orderItems) > 0) { ?>
 					<div class="card mb-3">
 					  <h3 class="card-header fs13 text-white bg-info">Chi tiết đơn hàng</h3>
@@ -123,7 +139,7 @@
 				
 			</div>
 			<div class="col-md-3 col-12">
-				<?php $this->load->view('common/support'); ?>
+				<?php $this->load->view('common/rightcontent'); ?>
 			</div>
 		</div>
 	</div>

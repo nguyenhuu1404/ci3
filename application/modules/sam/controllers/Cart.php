@@ -52,11 +52,14 @@ class Cart extends FrontendController{
 	public function showCart(){
 		$this->load->helper('form');
 		$this->data['layout'] = 'cart/showcart';
-		$this->data['title'] = 'Giỏ hàng';
+		$this->data['title'] = 'Trang giỏ hàng nơi lưu giữ các sản phẩm bạn muốn mua tại tủ thuốc nam.';
 		$this->data['seoType'] = 'article';
-		$this->data['description'] = 'Giỏ hàng của bạn tại tủ thuốc nam. Thanh toán dễ dàng mua hàng cực thích!';
+		$this->data['description'] = 'Trang giỏ hàng của tủ thuốc nam cung cấp các sản phẩm mà bạn muốn mua, giúp bạn dễ dàng trong việc mua hàng tại tủ thuốc nam.';
 		
-		//$this->data['catNews'] = $this->new_model->getCategories();
+		$this->load->model('new_model');
+		$this->data['newCategories'] = $this->category->getNewcategories();
+		$this->data['topNews'] = $this->new_model->getTopNews();
+		$this->data['newNews'] = $this->new_model->getNewNews();
 		$this->load->view($this->data['masterPage'], $this->data);
 		
 	}

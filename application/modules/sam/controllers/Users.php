@@ -13,7 +13,11 @@ class Users extends FrontendController{
 		if($this->session->userdata('userData')){
             $this->data['layout'] = 'user/account';
             $this->data['title'] = 'Trang cá nhân';
-            $this->data['description'] = 'Trang cá nhân';
+            $this->data['description'] = 'Trang cá nhân là nơi lưu trữ các thông tin tài khoản của bạn tại tủ thuốc nam. Bạn có thể quản lí, chỉnh sửa thông tin cá nhân, đơn hàng tại đây.';
+			$this->load->model('new_model');
+			$this->data['newCategories'] = $this->category->getNewcategories();
+			$this->data['topNews'] = $this->new_model->getTopNews();
+			$this->data['newNews'] = $this->new_model->getNewNews(); 
                 
             $this->load->view($this->data['masterPage'], $this->data);
         }else{
@@ -189,7 +193,10 @@ class Users extends FrontendController{
             $this->data['description'] = 'Danh sách các đơn hàng của bạn ở tủ thuốc nam';
             $this->load->model('order');
             $this->data['orders'] = $this->order->getOrderByUser($userData['id']);
-                
+            $this->load->model('new_model');
+			$this->data['newCategories'] = $this->category->getNewcategories();
+			$this->data['topNews'] = $this->new_model->getTopNews();
+			$this->data['newNews'] = $this->new_model->getNewNews();    
             $this->load->view($this->data['masterPage'], $this->data);
         }else{
             redirect('my-account.html');
@@ -207,7 +214,11 @@ class Users extends FrontendController{
                 $this->data['description'] = 'Chi tiết đơn hàng củ bạn khi mua hàng ở tủ thuốc nam';
                 $this->data['order'] = $this->order->getOne($orderId);
                 $this->data['orderItems'] = $this->order->getOrderItems($orderId);
-                    
+                
+				$this->load->model('new_model');
+				$this->data['newCategories'] = $this->category->getNewcategories();
+				$this->data['topNews'] = $this->new_model->getTopNews();
+				$this->data['newNews'] = $this->new_model->getNewNews();				
                 $this->load->view($this->data['masterPage'], $this->data);
 
             }else{
@@ -223,6 +234,7 @@ class Users extends FrontendController{
             $this->data['layout'] = 'user/edit';
             $this->data['title'] = 'Sửa thông tin cá nhân';
             $this->data['description'] = 'Sửa thông tin cá nhân củ bạn để chúng tôi hiểu hơn về bạn.';
+			$this->load->model('new_model');
             
             if($this->input->post()){
                 $key = config_item('encryption_key');
@@ -246,9 +258,16 @@ class Users extends FrontendController{
 
                     }
                 }
+				
+				$this->data['newCategories'] = $this->category->getNewcategories();
+				$this->data['topNews'] = $this->new_model->getTopNews();
+				$this->data['newNews'] = $this->new_model->getNewNews();
                 $this->load->view($this->data['masterPage'], $this->data);
             }
-                
+            
+			$this->data['newCategories'] = $this->category->getNewcategories();
+			$this->data['topNews'] = $this->new_model->getTopNews();
+			$this->data['newNews'] = $this->new_model->getNewNews();    
             $this->load->view($this->data['masterPage'], $this->data);
             
         }else{

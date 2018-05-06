@@ -30,7 +30,8 @@
                       <h3 class="fs09 m-0">
                       <a href="/<?=$new['slug'];?>.html"><?=$new['name'];?></a>
                       </h3>
-                      <span class="post-date"><?=$date; ?></span>
+                      <span class="post-date main-color"><?=$date; ?></span>
+					  <span class="views-count main-color fs07"><?=$new['views']?></span>
                     </div>
                   </div>
                 <?php } } ?>
@@ -52,7 +53,8 @@
                     <h3 class="m-0 fs09">
                     <a href="/<?=$new['slug'];?>.html"><?=$new['name'];?></a>
                     </h3>
-                    <span class="post-date"><?=$date; ?></span>
+                    <span class="post-date main-color"><?=$date; ?></span>
+					<span class="views-count main-color fs07"><?=$new['views']?></span>
                   </div>
                 </div>
                 <?php } } ?>

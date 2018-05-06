@@ -25,10 +25,49 @@
 	    <div class="row">
 	    	<div class="col-md-9 col-12">
 				<div class="box-shadow p-3 mb-3 bg-white">
-					<h2><?=$new['name']?></h2>
+					<h2 class="text-uppercase mb-0"><?=$new['name']?></h2>
+					<div class="mb-4 fs09">
+					<span class="post-date fs09 main-color"><?=date('d-m-Y', $tam);?></span> &nbsp;/ &nbsp;
+					<span class="views-count main-color fs09"><?=$new['views'];?></span>
+					</div>
 					<div class="content">
 						<?=$new['content'];?>
 					</div>
+
+					<?php if($tags){ ?>
+					<div class="tagged_as mb-2"><b>Từ khóa: </b>
+						<?php foreach ($tags as $key => $tag) {
+							echo '<a href="/tag/'.$tag['slug'].'.html" rel="tag">'.$tag['name'].'</a>';
+						} ?>
+						
+					</div>
+					<?php } ?>	
+
+					<div class="product-share  mb-2"> 
+						<span class="share-title">Chia sẻ trên mạng xã hội</span>
+						<ul class="menu-social-icons pull-right m-0">
+							
+							
+							<li> 
+								<a rel="nofollow" href="https://twitter.com/share?url=<?=site_url();?><?=$new['slug'];?>.html&amp;text=<?=urlencode($new['name']);?>" class="title-toolip" title="Twitter" target="_blank"> <i class="fa fa-twitter"></i> </a>
+							</li>
+							<li> 
+								<a rel="nofollow" href="http://www.facebook.com/sharer.php?u=<?=site_url();?><?=$new['slug'];?>.html&amp;images=<?=base_url();?>assets/sam/images/news/<?=$new['image'];?>" class="title-toolip" title="Facebook" target="_blank"> <i class="fa fa-facebook"></i> </a>
+							</li>
+							<li>
+								<a rel="nofollow" href="http://pinterest.com/pin/create/button/?url=<?=site_url();?><?=$new['slug'];?>.html&amp;media=<?=base_url();?>assets/sam/images/news/<?=$new['image'];?>&amp;description=<?=urlencode($new['name']);?>" class="title-toolip" title="Pinterest" target="_blank"> <i class="fa fa-pinterest"></i> </a>
+							</li>
+							<li> 
+								<a rel="nofollow" href="http://plus.google.com/share?url=<?=site_url();?><?=$new['slug'];?>.html" class="title-toolip" title="Google +" target="_blank"> <i class="fa fa-google-plus"></i> </a>
+							</li>
+							<li> 
+								<a rel="nofollow" href="https://web.skype.com/share?url=<?=site_url();?><?=$new['slug'];?>.html" title="skype" target="_blank"> <i class="fa fa-skype"></i> </a>
+							</li>
+						</ul>
+					</div>
+
+					<?php $this->load->view('common/comment'); ?>
+
 				</div>
 
 				<?php if($relateNews){ ?>
@@ -45,6 +84,11 @@
 			                      
 			                    </div>
 			                    <h3 class="name"><a href="/san-pham/<?=$val['slug'];?>.html"><?=$val['name']?></a></h3>
+
+			                    <div class="mb-2 fs09">
+									<span class="post-date fs09 main-color"><?=date('d-m-Y', strtotime($new['created']));?></span> &nbsp;/ &nbsp;
+									<span class="views-count main-color fs09"><?=$new['views'];?></span>
+								  </div>
 			                    <p class="mb-2"><?=$val['brief']?></p>
 			                    
 			                    
@@ -59,22 +103,7 @@
 
 	        </div>
 	        <div class="col-md-3 col-12">
-				<?php $this->load->view('common/support'); ?>
-				<?php if($newCategories){ ?>
-					<div class="box-shadow box-news bg-white mb-3 p-3">
-						<h5 class="title-new">Danh mục tin tức</h5>
-						<ul class="new-category p-0">
-						<?php foreach ($newCategories as $cate) {
-							echo '<li>
-									<a href="/'.$cate['alias'].'.html">'.$cate['name'].'</a>
-								</li>';
-						} ?>
-						</ul>
-
-					</div>
-				<?php } ?>
-
-				<?php $this->load->view('common/news'); ?>		
+				<?php $this->load->view('common/rightcontent'); ?>	
 	        </div>
 	    </div>
  	</div>
