@@ -83,7 +83,7 @@ class Payment extends FrontendController{
 						$dataOrder['key'] = $key;
 
 						$orderId = $this->order->save('orders', $dataOrder);
-
+						
 						$order_items = $this->cart->contents();
 						$dataOrderItems = array();
 						foreach ($order_items as $item) {
@@ -98,6 +98,9 @@ class Payment extends FrontendController{
 						}
 						//debug($dataOrderItems);
 						$this->order->insertMany('order_items', $dataOrderItems);
+						//gui mail
+						$dataOrder['id'] = $orderId;
+						$this->sendMail($dataOrder, $order_items);
 						//destroy
 						$this->cart->destroy();
 						redirect('sam/payment/received/'.$orderId.'/'.$key);
@@ -117,6 +120,148 @@ class Payment extends FrontendController{
 			redirect('gio-hang.html');
 		}
 		
+	}
+	public function sendMail($order, $orderItens){
+		 if($order['payment_method'] == 'bacs'){
+	        	$payment_method = 'Chuyển khoản ngân hàng';
+	        	$note = ' Đơn hàng của bạn chỉ được xử lí khi chúng tôi nhận được thanh toán. Hãy chuyển khoản cho chúng tôi theo thông tin ngân hàng ở bên dưới.';
+	        	$nganhang = '<h3>Tài khoản ngân hàng của chúng tôi</h3>
+					<table cellspacing="0" cellpadding="6" class="table">
+						<tbody>
+							<tr>
+								<td>Số tài khoản:</td>
+								<td><b>007704060046435<b></td>
+							</tr>
+							<tr>
+								<td>Chủ tài khoản:</td>
+								<td><b>NGUYEN VAN HUU<b></td>
+							</tr>
+							<tr>
+								<td>Ngân hàng:</td>
+								<td><b>Vib(Ngân hàng quốc tế)</b></td>
+							</tr>
+							<tr>
+								<td>Chi nhánh:</td>
+								<td><b>Thanh Xuân - Hà Nội</b></td>
+							</tr>
+							<tr>
+								<td>Nội dung chuyển khoản:</td>
+								<td><b>Họ tên - Mã đơn hàng</b></td>
+							</tr>
+
+						</tbody>
+					</table>';
+	        }else if($order['payment_method'] =='cod'){
+	        	$payment_method = 'Thanh toán khi giao hàng';
+	        	$nganhang = '';
+	        	$note = '';
+	        }
+		$body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+		<html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+		    <meta http-equiv="Content-Type" content="text/html; charset="utf8" />
+		    <title>Đặt hàng thành công</title>
+		    <style type="text/css">
+		        body {
+		            font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+		            font-size: 16px;
+		        }
+		        .header{background: #f22738; font-weight: bold; font-size: 18px; color: white; padding: 20px;}
+		        .table{
+		        	width: 100%;
+    				font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+    				color: #636363;
+    				border: 1px solid #e5e5e5;
+    			}
+    			.table tr td, .table tr th{
+    				    text-align: left;
+					    vertical-align: middle;
+					    border: 1px solid #eee;
+					    word-wrap: break-word;
+					    color: #636363;
+					    padding: 12px;
+
+    			}
+    			.content{width: 100%;}
+		    </style>
+		</head>
+		<body>
+
+			<div style="border: 1px solid #eee; width: 600px; margin: 0px auto;">
+				<div class="header">
+					Cảm ơn bạn đã đặt hàng
+				</div>
+				<div style="padding: 15px;" >
+					<section style="margin-bottom: 10px; font-size: 18px;">
+					Đơn hàng của bạn đã được đặt thành công.'.$note.'
+					</section>
+					<h2>Mã hàng: <b style="color: #f22738;">'.$order['id'].'</b></h2>
+					<h3>Chi tiết đơn hàng</h3>
+					<table cellspacing="0" cellpadding="6" class="table">
+						<tbody>
+							<tr>
+								<td><b>Sản phẩm</b></td>
+								<td><b>Sỗ lượng</b></td>
+								<td><b>Giá</b></td>
+							</tr>';
+							foreach ($orderItens as  $item) {
+								$body .= '<tr>
+									<td><a href="http://tuthuocnam.com/san-pham/' .$item['slug']. '.html">'.$item['name'].'</a></td>
+									<td>'.$item['qty'].'</td>
+									<td>'.$item['price'].'</td>
+								</tr>';
+							}
+							
+
+							$body .='<tr>
+								<td colspan="2">Tổng tiền</td>
+								<td><b class="main-color fs13">'.formatPrice($order['total_price']).'</b></td>
+							</tr>
+							<tr>
+								<td colspan="2">Phương thức thanh toán</td>
+								<td><b>'.$payment_method.'</b>
+								</td>
+							</tr>
+
+						</tbody>
+					</table>
+					<h3>Chi tiết khách hàng</h3>
+					<table cellspacing="0" cellpadding="6" class="table">
+						<tbody>
+							<tr>
+								<td>Họ tên:</td>
+								<td><b>'.$order['fullname'].'<b></td>
+							</tr>
+							<tr>
+								<td>Số điện thoại:</td>
+								<td><b>'.$order['phone'].'</b></td>
+							</tr>
+							<tr>
+								<td>Địa chỉ giao hàng:</td>
+								<td><b>'.$order['address_ship'].'</b></td>
+							</tr>
+
+						</tbody>
+					</table>
+
+					'.$nganhang.'
+
+				</div>
+				<div style="text-align: center; padding-top: 15px; padding-bottom: 30px;">
+					Tủ thuốc nam - <a href="http://tuthuocnam.com">tuthuocnam.com</a>
+				</div>
+			</div>
+
+		</body>
+		</html>';
+		$this->load->library('email');
+		$this->email
+		    ->from('gowebtut@gmail.com', 'TuThuocNam')
+		    ->to('nguyenhuu140490@gmail.com')
+		    ->subject('Đặt hàng thành công tại tuthuocnam.com')
+		    ->message($body)
+		    ->send();
+
 	}
 	public function received($orderId, $orderKey){
 

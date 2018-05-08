@@ -39,6 +39,8 @@ class Products extends FrontendController{
 
         $this->product->pageSize = $this->perPage;
         $this->product->pageNum = 0;
+
+        $this->data['paginations'] = $this->ajax_pagination->create_links();
 		$this->data['products'] = $this->product->getItems();
 
 		$this->data['newProducts'] = $this->product->getNewProduct();
@@ -140,6 +142,7 @@ class Products extends FrontendController{
 
 	        $this->product->pageSize = $this->perPage;
 	        $this->product->pageNum = 0;
+	         $this->data['paginations'] = $this->ajax_pagination->create_links();
 			$this->data['products'] = $this->product->getItems();
 
 			$this->data['newProducts'] = $this->product->getNewProduct();
@@ -228,6 +231,7 @@ class Products extends FrontendController{
         //get the posts data
         $this->product->pageSize = $this->perPage;
         $this->product->pageNum = $offset;
+        $this->data['paginations'] = $this->ajax_pagination->create_links();
 		$this->data['products'] = $this->product->getItems();
         
         //load the view
@@ -270,6 +274,7 @@ class Products extends FrontendController{
 
 	        $this->product->pageSize = $this->perPage;
 	        $this->product->pageNum = 0;
+	        $this->data['paginations'] = $this->ajax_pagination->create_links();
 			$this->data['products'] = $this->product->getItems();
 
 			$this->data['newProducts'] = $this->product->getNewProduct();
@@ -340,6 +345,7 @@ class Products extends FrontendController{
 
         $this->product->pageSize = $this->perPage;
         $this->product->pageNum = 0;
+         $this->data['paginations'] = $this->ajax_pagination->create_links();
 		$this->data['products'] = $this->product->getItems();
 
 		$this->data['newProducts'] = $this->product->getNewProduct();

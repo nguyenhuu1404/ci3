@@ -1,8 +1,8 @@
           <div class="card-header bg-white">
             <div class="pull-right">
                <?php 
-                  $pagination = $this->ajax_pagination->create_links(); 
-                  echo $pagination;
+                 
+                  echo $paginations;
                ?>
             </div>
             
@@ -61,6 +61,6 @@
 
           <div class="card-footer text-muted bg-white">
 
-              <?php echo $pagination; ?>
+              <?php echo $paginations; ?>
 
           </div>

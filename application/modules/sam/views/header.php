@@ -41,12 +41,10 @@
 			</div>
 			<div class="p-2 ml-auto d-none d-sm-block">
 				
-				<i class="fa fa-paper-plane text-info"></i> tuthuocnam158@gmail.com &nbsp; &nbsp;
-		
-				<a href="skype:huunv90" rel="nofollow"><i class="fa cl-skype fa-skype" ></i> huunv90 </a> 
+				<span><i class="fa cl-skype fa-skype" ></i> Skype: huunv90 </span> 
 
 			</div>
-			<div class="p-2"><i class="fa text-warning fa-phone"></i> 0986.654.606</div>
+			<div class="p-2"><i class="fa text-warning fa-phone"></i> Hotline: 0986.654.606</div>
 				
 			<div class="ml-auto p-2">
 				<div class="dropdown">

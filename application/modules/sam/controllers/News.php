@@ -83,6 +83,7 @@ class News extends FrontendController{
 
 	        $this->new_model->pageSize = $this->perPage;
 	        $this->new_model->pageNum = 0;
+	        $this->data['paginations'] = $this->ajax_pagination->create_links();
 			$this->data['news'] = $this->new_model->getItems();
 
 			//$this->data['news'] = $this->new_model->getNewByCateId($cateId);
@@ -119,6 +120,7 @@ class News extends FrontendController{
 
 	        $this->new_model->pageSize = $this->perPage;
 	        $this->new_model->pageNum = 0;
+	        $this->data['paginations'] = $this->ajax_pagination->create_links();
 			$this->data['news'] = $this->new_model->getItems();
 
 			//$this->data['news'] = $this->new_model->getNewByCateId($cateId);
@@ -155,6 +157,7 @@ class News extends FrontendController{
         //get the posts data
         $this->new_model->pageSize = $this->perPage;
         $this->new_model->pageNum = $offset;
+        $this->data['paginations'] = $this->ajax_pagination->create_links();
 		$this->data['news'] = $this->new_model->getItems();
         
         //load the view

@@ -1,18 +1,54 @@
 <?php
+/**
+ * CodeIgniter
+ *
+ * An open source application development framework for PHP
+ *
+ * This content is released under the MIT License (MIT)
+ *
+ * Copyright (c) 2014 - 2017, British Columbia Institute of Technology
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ * @package	CodeIgniter
+ * @author	EllisLab Dev Team
+ * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
+ * @copyright	Copyright (c) 2014 - 2017, British Columbia Institute of Technology (http://bcit.ca/)
+ * @license	http://opensource.org/licenses/MIT	MIT License
+ * @link	https://codeigniter.com
+ * @since	Version 1.0.0
+ * @filesource
+ */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
  * Pagination Class
  *
- * @package     CodeIgniter
- * @subpackage  Libraries
- * @category    Pagination
- * @author      EllisLab Dev Team
- * @link        https://codeigniter.com/user_guide/libraries/pagination.html
+ * @package		CodeIgniter
+ * @subpackage	Libraries
+ * @category	Pagination
+ * @author		EllisLab Dev Team
+ * @link		https://codeigniter.com/user_guide/libraries/pagination.html
  */
-class Ajax_pagination {
+class Huu {
 
-    var $base_url        = ''; // The page we are linking to
+	var $base_url        = ''; // The page we are linking to
     var $total_rows      = ''; // Total number of items (database results)
     var $per_page        = 10; // Max number of items you want shown per page
     var $num_links       =  2; // Number of "digit" links to show before/after the currently viewed page
@@ -42,54 +78,54 @@ class Ajax_pagination {
     var $link_func       = 'getData';
     var $loading         = '.loading';
 
-    protected $CI;
+	protected $CI;
 
 
-    // --------------------------------------------------------------------
+	// --------------------------------------------------------------------
 
-    /**
-     * Constructor
-     *
-     * @param   array   $params Initialization parameters
-     * @return  void
-     */
-    public function __construct($params = array())
-    {
-        $this->CI =& get_instance();
-        
+	/**
+	 * Constructor
+	 *
+	 * @param	array	$params	Initialization parameters
+	 * @return	void
+	 */
+	public function __construct($params = array())
+	{
+		$this->CI =& get_instance();
+		
 
-        $this->initialize($params);
-        log_message('info', 'Pagination Class Initialized');
-    }
+		$this->initialize($params);
+		log_message('info', 'Pagination Class Initialized');
+	}
 
-    // --------------------------------------------------------------------
+	// --------------------------------------------------------------------
 
-    /**
-     * Initialize Preferences
-     *
-     * @param   array   $params Initialization parameters
-     * @return  CI_Pagination
-     */
-    public function initialize(array $params = array())
-    {
-        
+	/**
+	 * Initialize Preferences
+	 *
+	 * @param	array	$params	Initialization parameters
+	 * @return	CI_Pagination
+	 */
+	public function initialize(array $params = array())
+	{
+		
 
-        foreach ($params as $key => $val)
-        {
-            if (property_exists($this, $key))
-            {
-                $this->$key = $val;
-            }
-        }
+		foreach ($params as $key => $val)
+		{
+			if (property_exists($this, $key))
+			{
+				$this->$key = $val;
+			}
+		}
 
-        if ($this->anchor_class != ''){
+		if ($this->anchor_class != ''){
             $this->anchor_class = 'class="' . $this->anchor_class . '" ';
         }
 
-        return $this;
-    }
+		return $this;
+	}
 
-     function create_links(){
+	 function create_links(){
         // If our item count or per-page total is zero there is no need to continue.
         if ($this->total_rows == 0 OR $this->per_page == 0){
            return '';
@@ -230,7 +266,48 @@ class Ajax_pagination {
         return '<a href="javascript:void(0);"' . $this->anchor_class . ' onclick="'.$this->link_func.'('.$pageCount.')">'. $text .'</a>';
     }
 
-    
-    
+	// --------------------------------------------------------------------
+
+	/**
+	 * Parse attributes
+	 *
+	 * @param	array	$attributes
+	 * @return	void
+	 */
+	protected function _parse_attributes($attributes)
+	{
+		isset($attributes['rel']) OR $attributes['rel'] = TRUE;
+		$this->_link_types = ($attributes['rel'])
+			? array('start' => 'start', 'prev' => 'prev', 'next' => 'next')
+			: array();
+		unset($attributes['rel']);
+
+		$this->_attributes = '';
+		foreach ($attributes as $key => $value)
+		{
+			$this->_attributes .= ' '.$key.'="'.$value.'"';
+		}
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Add "rel" attribute
+	 *
+	 * @link	http://www.w3.org/TR/html5/links.html#linkTypes
+	 * @param	string	$type
+	 * @return	string
+	 */
+	protected function _attr_rel($type)
+	{
+		if (isset($this->_link_types[$type]))
+		{
+			unset($this->_link_types[$type]);
+			return ' rel="'.$type.'"';
+		}
+
+		return '';
+	}
+	
 
 }

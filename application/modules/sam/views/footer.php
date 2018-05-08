@@ -9,7 +9,6 @@
 			<div class="col-12 col-md-3">
 				<h3 class="title-new fs09">Hỗ trợ khách hàng</h3>
 				Miss: Vũ Hà<br/>
-				Email: ha.vuvu25@gmail.com<br/>
 				Điện thoại: 0988.588.197<br/>
 				Skype: huunv90<br/>
 				

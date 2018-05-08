@@ -1,7 +1,7 @@
 <div class="box-shadow box-news bg-white mb-3 p-3">
           <h5 class="title-new">Ý kiến khách hàng</h5>
 
-          <div id="tesmonial" class="carousel slide" data-ride="carousel">
+          <div id="tesmonial" class="carousel slide" data-interval="false" data-ride="carousel">
 
             <!-- Indicators -->
             <ul class="carousel-indicators">

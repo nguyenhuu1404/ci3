@@ -1,7 +1,7 @@
 <div class="box-shadow box-news bg-white mb-3 p-3">
 	<h5 class="title-new">Hỗ trợ khách hàng</h5>
 
-          <div id="support" class="carousel slide" data-ride="carousel">
+          <div id="support" class="carousel slide" data-interval="false" data-ride="carousel">
 		  
 		  <ol class="carousel-indicators">
 			<li class="bg-warning pointer" data-target="#support" data-slide-to="0" class="active"></li>
@@ -19,9 +19,7 @@
                     <div class="text-center">
                     	<i class="fa text-warning fa-phone"></i> 0988.588.197
                     </div>
-                    <div class="text-center mb-3">
-                    	ha.vuvu25@gmail.com
-                    </div>
+                    
                     
                   </div>
                </div>

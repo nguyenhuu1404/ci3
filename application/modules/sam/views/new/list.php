@@ -12,7 +12,7 @@
   },
   "potentialAction" : {
     "@type" : "SearchAction",
-    "target" : "http://tuthuocnam.com/sam/proudcts/search?name={search_term}",
+    "target" : "http://tuthuocnam.com/sam/proudcts/search?s={search_term}",
     "query-input" : "required name=search_term"
   }  
 }
@@ -51,7 +51,7 @@
 				  
 				
 
-	            <?php echo $this->ajax_pagination->create_links(); ?>
+	            <?php echo $paginations; ?>
 	            
 	        </div>
 	        <div class="col-md-3 col-12">

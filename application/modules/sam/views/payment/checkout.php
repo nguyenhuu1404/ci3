@@ -39,7 +39,7 @@
 			</div>
 			<?php } ?>
 
-        	<form method="post">
+        	<form id="checkout" method="post">
         		<div class="card-deck">
         			
     				<div class="card box-shadow bg-white">
@@ -138,9 +138,13 @@
 							</ul>
 
 							
-							<input type="submit" value="Đặt hàng" class="btn btn-lg w-100 btn-danger" />
+							<input id="dathang" type="submit" value="Đặt hàng" class="btn btn-lg w-100 btn-danger" />
 							
 							<script type="text/javascript">
+							$('#dathang').click(function(){
+								$('#checkout').submit();
+								$(this).attr("disabled", true);
+							});
 							$('.input-radio').click(function() {
 								var payment_method = $('input[name=payment_method]:checked').val();
 								
