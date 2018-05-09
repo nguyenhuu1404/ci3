@@ -17,6 +17,7 @@ class Products extends FrontendController{
 			)
 			
 		);
+
 		$dataCategory = $this->product->getOneField('slug', 'san-pham', 'categories', 'title, description');
 		$this->data['layout'] = 'product/index';
 		$this->data['title'] = $dataCategory['title'];
@@ -50,7 +51,7 @@ class Products extends FrontendController{
 
 		$this->data['maxPrice'] = $this->product->getMaxField('price');
 		$this->data['minPrice'] = $this->product->getMinField('price');
-
+		
 		$this->load->view($this->data['masterPage'], $this->data);
 	}
 	public function detail($slug){
