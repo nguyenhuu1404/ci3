@@ -16,7 +16,7 @@
                   <div class="card-body">
                     
                     <h6 class="card-title text-center">Vũ Hà</h6>
-                    <div class="text-center">
+                    <div class="text-center mb-3">
                     	<i class="fa text-warning fa-phone"></i> 0988.588.197
                     </div>
                     

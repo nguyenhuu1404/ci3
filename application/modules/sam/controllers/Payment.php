@@ -67,6 +67,9 @@ class Payment extends FrontendController{
 		                	if($user['address_ship'] == ''){
 		                		$this->order->save('users', array('address_ship' => $dataOrder['address_ship']), $userData['id']);
 		                	}
+		                	if($user['phone'] == ''){
+		                		$this->order->save('users', array('phone' => $dataOrder['phone']), $userData['id']);
+		                	}
 		                }
 		                $dataOrder['total_price'] = $this->cart->total();
 		                $dataOrder['ip'] = $this->input->ip_address();

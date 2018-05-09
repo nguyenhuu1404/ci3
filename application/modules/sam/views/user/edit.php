@@ -1,6 +1,6 @@
 <?php 
 	$userData = $this->session->userdata('userData');
-
+	$address_ship = '';
 	if(isset($userData['address_ship'])){
 		$address_ship = $userData['address_ship'];
 	}
@@ -31,6 +31,7 @@
 						    </small>
 					  	</div>
 				       
+				        <?php if(!$userData['isface']){ ?>
 				        <div class="form-group">
 						    <label class="info-title" for="oldpassword">Mật khẩu hiện tại</label>
 						    <input type="password" name="oldpassword" class="form-control" value="<?=set_value('oldpassword');?>" id="oldpassword" />
@@ -46,6 +47,8 @@
 						    	<?php echo form_error('password'); ?>
 						    </small>
 						</div>
+						<?php } ?>
+
 				         <?php if(isset($success)){
 				         		echo '<div class="alert alert-success">'.$success.'</div>';
 				         	} ?>

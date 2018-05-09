@@ -14,10 +14,10 @@ class Orders extends AdminGrocery {
 		$users = $this->order->getOptionByField('fullname', 'users');
 		$order_status = array(
 			'processing' => 'Đang xử lí',
+			'shipping'	 => 'Đang vận chuyển',
 			'completed'  => 'Thành công',
 			'cancelled'  => 'Hủy',
 			'refunded'	 => 'Hoàn tiền',
-			'shipping'	 => 'Đang vận chuyển',
 			'on-hold'    => 'Chờ thanh toán',
 			'received'    => 'Đã nhận'
 		);

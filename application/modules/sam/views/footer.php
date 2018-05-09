@@ -17,6 +17,8 @@
 				<h3 class="title-new fs09">Thông tin hữu ích</h3>
 				<ul class="usefull p-0">
 					<li><a href="/chinh-sach-doi-tra-hang.html">Chính sách đổi, trả hàng</a></li>
+					<li><a href="/chinh-sach-bao-mat.html">Chính sách bảo mật</a></li>
+					<li><a href="/dieu-khoan-su-dung.html">Điều khoản sử dụng</a></li>
 				</ul>
 				
 			</div>

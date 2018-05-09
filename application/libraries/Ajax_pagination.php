@@ -17,10 +17,10 @@ class Ajax_pagination {
     var $per_page        = 10; // Max number of items you want shown per page
     var $num_links       =  2; // Number of "digit" links to show before/after the currently viewed page
     var $cur_page        =  0; // The current page being viewed
-    var $first_link      = 'First';
+    var $first_link      = 'Trang đầu';
     var $next_link       = '&#187;';
     var $prev_link       = '&#171;';
-    var $last_link       = 'Last';
+    var $last_link       = 'Trang cuối';
     var $uri_segment     = 3;
     var $full_tag_open   = '<div class="pagination">';
     var $full_tag_close  = '</div>';
@@ -28,7 +28,7 @@ class Ajax_pagination {
     var $first_tag_close = '';
     var $last_tag_open   = '';
     var $last_tag_close  = '';
-    var $cur_tag_open    = '&nbsp;<b>';
+    var $cur_tag_open    = '<b>';
     var $cur_tag_close   = '</b>';
     var $next_tag_open   = '';
     var $next_tag_close  = '';
@@ -38,7 +38,7 @@ class Ajax_pagination {
     var $num_tag_close   = '';
     var $target          = '';
     var $anchor_class    = '';
-    var $show_count      = true;
+    var $show_count      = false;
     var $link_func       = 'getData';
     var $loading         = '.loading';
 
@@ -100,8 +100,8 @@ class Ajax_pagination {
 
         // Is there only one page? Hm... nothing more to do here then.
         if ($num_pages == 1){
-            $info = 'Showing : ' . $this->total_rows;
-            return $info;
+            //$info = 'Showing : ' . $this->total_rows;
+            return '';
         }
 
         // Determine the current page number.        

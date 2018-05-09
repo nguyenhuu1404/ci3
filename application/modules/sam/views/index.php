@@ -25,15 +25,10 @@
 	<link rel="author" href="https://plus.google.com/u/0/+NguyenHuu1404" />
 	<link rel="shortcut icon" type="image/x-icon" href="/assets/sam/images/favicon.ico"/>
 	<link rel="canonical" href="<?=current_url();?>" />	
-    <link rel="stylesheet" href="/assets/sam/css/bootstrap.min.css"/> 
-    <link rel="stylesheet" href="/assets/sam/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="/assets/sam/css/style.css"/>
-	<?php if(isset($css)){
-		foreach($css as $val){
-			echo '<link rel="stylesheet" href="/assets/'.$module.'/css/'.$val.'.css" />';
-		}
-	} ?>
+    
+    
 	<style>
+		<?php $this->load->view('common/css'); ?>
 		.logo{background-image: url('/assets/sam/images/logo.png'); width: 200px; height: 58px;}
 		
 	</style>

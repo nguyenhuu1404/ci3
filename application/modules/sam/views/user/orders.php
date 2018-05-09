@@ -29,28 +29,29 @@
 									<?php 
 										switch ($order['order_status']) {
 											case 'processing':
-												echo 'Đang xử lí.';
+												$order_status = 'Đang xử lí.';
 												break;
 											case 'completed':
-												echo 'Thành công.';
+												$order_status = 'Thành công.';
 												break;
 											case 'cancelled':
-												echo 'Đã hủy.';
+												$order_status = 'Đã hủy.';
 												break;
 											case 'refunded':
-												echo 'Đã hoàn tiền.';
+												$order_status = 'Đã hoàn tiền.';
 												break;
 											case 'shipping':
-												echo 'Đang được chuyển.';
+												$order_status = 'Đang được chuyển.';
 												break;
 											case 'on-hold':
-												echo 'Chờ thanh toán.';
+												$order_status = 'Chờ thanh toán.';
 												break;				
 											
 											default:
-												echo '';
+												$order_status = '';
 												break;
 										}
+										echo $order_status;
 									?>
 								</td>
 								<td><b class="main-color"><?=formatPrice($order['total_price']);?></b></td>
@@ -62,7 +63,7 @@
 						</table>
 					</div>
 					<?php } else{
-						echo '<div class="alert alert-danger">Bạn chưa có đơn hàng nào. Vào trang <a href="san-pham.html">sản phẩm</a> để mua hàng. </div>';
+						echo '<div class="alert alert-danger">Bạn chưa có đơn hàng nào. Vào trang <a href="/san-pham.html">sản phẩm</a> để mua hàng. </div>';
 					} ?>
 					
 				</div>

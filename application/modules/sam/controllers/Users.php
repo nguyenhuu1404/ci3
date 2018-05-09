@@ -10,7 +10,9 @@ class Users extends FrontendController{
         $this->load->model('user');
 	}
 	public function login(){
+		
 		if($this->session->userdata('userData')){
+			
             $this->data['layout'] = 'user/account';
             $this->data['title'] = 'Trang cá nhân';
             $this->data['description'] = 'Trang cá nhân là nơi lưu trữ các thông tin tài khoản của bạn tại tủ thuốc nam. Bạn có thể quản lí, chỉnh sửa thông tin cá nhân, đơn hàng tại đây.';
@@ -135,45 +137,38 @@ class Users extends FrontendController{
         // Check if user is logged in
         if($this->facebook->is_authenticated()){
             // Get user facebook profile details
-            $fbUserProfile = $this->facebook->request('get', '/me?fields=id,first_name,last_name,email,link,gender,locale,cover,picture');
+            $fbUserProfile = $this->facebook->request('get', '/me?fields=id,first_name,last_name,email,link,gender,locale');
 
             // Preparing data for database insertion
             $userData['oauth_provider'] = 'facebook';
             $userData['oauth_uid'] = $fbUserProfile['id'];
-            $userData['fullname'] = $fbUserProfile['first_name'].$fbUserProfile['last_name'];
+            $userData['fullname'] = $fbUserProfile['first_name'].' '.$fbUserProfile['last_name'];
             $userData['email'] = $fbUserProfile['email'];
             $userData['gender'] = $fbUserProfile['gender'];
             $userData['locale'] = $fbUserProfile['locale'];
-            $userData['cover'] = $fbUserProfile['cover']['source'];
-            $userData['picture'] = $fbUserProfile['picture']['data']['url'];
-            $userData['link'] = $fbUserProfile['link'];
+            $userData['ip'] = $this->input->ip_address();
+            $userData['role_id'] = 2;
             
             // Insert or update user data
             $userID = $this->user->checkUserFacebook($userData);
             
             // Check user data insert or update status
             if(!empty($userID)){
-                $data['userData'] = $userData;
+                $user = $this->user->getOne($userID);
+                $userData['isface'] = 1;
+                $userData['id'] = $userID;
+                $userData['id'] = $user['phone'];
+                $userData['address_ship'] = $user['address_ship'];
                 $this->session->set_userdata('userData',$userData);
-            }else{
-               $data['userData'] = array();
             }
             
-            // Get logout URL
-            $data['logoutURL'] = $this->facebook->logout_url();
             $payment = $this->input->get('payment');
             if(isset($payment) && $payment ==1){
                 redirect('thanh-toan.html');
             }else{
                 redirect('my-account.html');
             }
-        }else{
-            // Get login URL
-            $data['authURL'] =  $this->facebook->login_url();
         }
-        
-        // Load login & profile view
-         debug($data);
     }
 
     public function logout() {
@@ -186,14 +181,17 @@ class Users extends FrontendController{
     }
 
     public function orders(){
+            
+
         if($this->session->userdata('userData')){
+			//echo 1;die();
+            $this->load->model('order');
+            $this->load->model('new_model');
             $userData = $this->session->userdata('userData');
             $this->data['layout'] = 'user/orders';
             $this->data['title'] = 'Danh sách các đơn hàng';
             $this->data['description'] = 'Danh sách các đơn hàng của bạn ở tủ thuốc nam';
-            $this->load->model('order');
             $this->data['orders'] = $this->order->getOrderByUser($userData['id']);
-            $this->load->model('new_model');
 			$this->data['newCategories'] = $this->category->getNewcategories();
 			$this->data['topNews'] = $this->new_model->getTopNews();
 			$this->data['newNews'] = $this->new_model->getNewNews();    
@@ -239,10 +237,12 @@ class Users extends FrontendController{
             if($this->input->post()){
                 $key = config_item('encryption_key');
                 $sUserData = $this->session->userdata('userData');
+
                 $userData = $this->user->getOne($sUserData['id']);
+
                 $post = $this->input->post();
 
-                if($post['oldpassword'] != '' && $post['password'] != ''){
+                if(isset($post['oldpassword']) && isset($post['oldpassword']) && $post['oldpassword'] != '' && $post['password'] != ''){
                     $pass = fillter($post['oldpassword']);
                     $password = md5($key.$pass);
                     if($password == $userData['password']){
@@ -253,6 +253,7 @@ class Users extends FrontendController{
                     }
                 }else{
                     if($post['address_ship'] != '' && $post['address_ship'] != $userData['address_ship']){
+                        debug($post);
                         $this->user->save('users', array('address_ship' => $post['address_ship']), $sUserData['id']);
                          $this->data['success'] = 'Cập nhật thành công. Thoát ra đăng nhập lại <a href="/sam/users/logout">đăng xuất</a>';
 

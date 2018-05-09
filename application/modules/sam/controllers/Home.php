@@ -5,7 +5,7 @@ class Home extends FrontendController{
 		parent::__construct(); 
 	}
 	public function index(){
-		$this->output->cache(60);
+		//$this->output->cache(60);
 		$this->load->model('product');
 		$this->load->model('new_model');
 
