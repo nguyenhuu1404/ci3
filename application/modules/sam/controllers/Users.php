@@ -14,7 +14,7 @@ class Users extends FrontendController{
 		if($this->session->userdata('userData')){
 			
             $this->data['layout'] = 'user/account';
-            $this->data['title'] = 'Trang cá nhân';
+            $this->data['title'] = 'Trang thông tin cá nhân của khách hàng';
             $this->data['description'] = 'Trang cá nhân là nơi lưu trữ các thông tin tài khoản của bạn tại tủ thuốc nam. Bạn có thể quản lí, chỉnh sửa thông tin cá nhân, đơn hàng tại đây.';
 			$this->load->model('new_model');
 			$this->data['newCategories'] = $this->category->getNewcategories();

@@ -18,6 +18,32 @@
 }
 
 </script>
+<?php if($paginations){ ?>
+<script>
+	function filterNew(page_num){
+    page_num = page_num?page_num:0;
+    
+    $.ajax({
+      type: 'POST',
+      url: '<?php echo base_url(); ?>sam/news/ajaxPagination/'+page_num,
+      <?php if(isset($categoryId) && is_numeric($categoryId)){ ?>
+        data: { page: page_num, categoryId: <?=$categoryId?>},
+        <?php } else if(isset($tagId) && is_numeric($tagId)){ ?>
+          data: { page: page_num, tagId: <?=$tagId?>},
+          <?php } else{ ?> 
+            data: { page: page_num},
+            <?php } ?>
+            beforeSend: function () {
+              $('.loading').show();
+            },
+            success: function (html) {
+              $('#pageAjax').html(html);
+              $('.loading').fadeOut("slow");
+            }
+          });
+  }
+</script>
+<?php } ?>
 <div class="full mb-3">
   	<div class="container">
 	    <div class="row">

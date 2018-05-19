@@ -190,6 +190,7 @@ class Products extends FrontendController{
 		$minPriceInput = $this->input->post('minPrice');
 		$maxPriceInput = $this->input->post('maxPrice');
 		$categoryId = $this->input->post('categoryId');
+		$tagId = $this->input->post('tagId');
         if(!$page){
             $offset = 0;
         }else{

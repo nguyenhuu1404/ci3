@@ -11,6 +11,7 @@
 </div>  
 <?php $name = $this->input->get('name');?>
 
+<?php if($paginations){ ?>
 <script>
   var minPrice = <?=$minPrice;?>;
   var maxPrice = <?=$maxPrice;?>;
@@ -39,7 +40,5 @@
             }
           });
   }
-
-
-  
 </script>
+<?php } ?>

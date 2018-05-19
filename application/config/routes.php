@@ -59,37 +59,23 @@ $route['product-sitemap.xml'] = 'sam/sitemap/product';
 $route['post-sitemap.xml'] = 'sam/sitemap/post';
 
 $route['my-account.html'] = 'sam/users/login';
-$route['my-account'] = 'sam/users/login';
 
-$route['san-pham'] = 'sam/products';
 $route['san-pham.html'] = 'sam/products';
 
 $route['gio-hang.html'] = 'sam/cart/showCart';
 $route['thanh-toan.html'] = 'sam/payment/checkout';
 
-$route['gio-hang'] = 'sam/cart/showCart';
-$route['thanh-toan'] = 'sam/payment/checkout';
-
 $route['san-pham/(:any).html'] = 'sam/products/detail/$1';
 $route['danh-muc/(:any).html'] = 'sam/products/category/$1';
 $route['tu-khoa/(:any).html'] = 'sam/products/tag/$1';
 
-$route['san-pham/(:any)'] = 'sam/products/detail/$1';
-$route['danh-muc/(:any)'] = 'sam/products/category/$1';
-$route['tu-khoa/(:any)'] = 'sam/products/tag/$1';
-
 $route['lien-he.html'] = 'sam/page/contact';
 $route['ve-chung-toi.html'] = 'sam/page/about';
-$route['lien-he'] = 'sam/page/contact';
-$route['ve-chung-toi'] = 'sam/page/about';
 
 $route['category/(:any).html'] = 'sam/news/category/$1';
 $route['tag/(:any).html'] = 'sam/news/tag/$1';
-$route['category/(:any)'] = 'sam/news/category/$1';
-$route['tag/(:any)'] = 'sam/news/tag/$1';
-$route['(:any).html'] = 'sam/news/detail/$1';
-$route['(:any)'] = 'sam/news/detail/$1';
 
+$route['(:any).html'] = 'sam/news/detail/$1';
 
 $route['admin/login'] = 'admin/verify/login';
 $route['admin/logout'] = 'admin/verify/logout';

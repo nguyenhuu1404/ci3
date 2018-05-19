@@ -26,4 +26,4 @@
   
 </div>
 
-<?php echo $this->ajax_pagination->create_links(); ?>
+<?php echo $paginations; ?>

@@ -70,14 +70,14 @@ class News extends FrontendController{
 			$this->data['name'] = $dataCategory['name'];
 			$this->data['description'] = $dataCategory['description'];
 
-			$this->new_model->conditions = array('category_id' => $dataCategory['id']);
 			//Pagination
-			$this->new_model->conditions = array('status' => 1);
+			$this->new_model->conditions = array('category_id' => $dataCategory['id'], 'status' => 1);
 	        $totalNews = $this->new_model->getCountItems();
 
 	        //pagination configuration
 	        $config['target']      = '#pageAjax';
 	        $config['base_url']    = base_url().'sam/news/ajaxPagination';
+	        $config['link_func']   = 'filterNew';
 	        $config['total_rows']  = $totalNews;
 	        $config['per_page']    = $this->perPage;
 	        $this->ajax_pagination->initialize($config);
@@ -86,6 +86,8 @@ class News extends FrontendController{
 	        $this->new_model->pageNum = 0;
 	        $this->data['paginations'] = $this->ajax_pagination->create_links();
 			$this->data['news'] = $this->new_model->getItems();
+
+			$this->data['categoryId'] = $dataCategory['id'];
 
 			//$this->data['news'] = $this->new_model->getNewByCateId($cateId);
 			$this->data['newCategories'] = $this->category->getNewcategories();
@@ -116,14 +118,17 @@ class News extends FrontendController{
 	        //pagination configuration
 	        $config['target']      = '#pageAjax';
 	        $config['base_url']    = base_url().'sam/news/ajaxPagination';
+	        $config['link_func']   = 'filterNew';
 	        $config['total_rows']  = $totalNews;
 	        $config['per_page']    = $this->perPage;
+	        
 	        $this->ajax_pagination->initialize($config);
 
 	        $this->new_model->pageSize = $this->perPage;
 	        $this->new_model->pageNum = 0;
 	        $this->data['paginations'] = $this->ajax_pagination->create_links();
 			$this->data['news'] = $this->new_model->getItems();
+			$this->data['tagId'] = $dataTag['id'];
 
 			//$this->data['news'] = $this->new_model->getNewByCateId($cateId);
 			$this->data['newCategories'] = $this->category->getNewcategories();
@@ -139,18 +144,29 @@ class News extends FrontendController{
 		$this->load->library('Ajax_pagination');
 		
 		$page = $this->input->post('page');
+		$categoryId = $this->input->post('categoryId');
+		$tagId = $this->input->post('tagId');
+
         if(!$page){
             $offset = 0;
         }else{
             $offset = $page;
         }
-        $this->new_model->conditions = array('status' => 1);
+        if(isset($categoryId) && is_numeric($categoryId)){
+        	$this->new_model->conditions = array('category_id' => $categoryId, 'status' => 1);
+		}
+
+		if(isset($tagId) && is_numeric($tagId)){
+        	$this->new_model->conditions = array('status' => 1);
+			$this->new_model->likeConditions = array("CONCAT(',',tag_ids,',')" => $tagId);
+		}
         //total rows count
         $totalNews = $this->new_model->getCountItems();
         
         //pagination configuration
         $config['target']      = '#pageAjax';
         $config['base_url']    = base_url().'sam/news/ajaxPagination';
+        $config['link_func']   = 'filterNew';
         $config['total_rows']  = $totalNews;
         $config['per_page']    = $this->perPage;
         $config['cur_page']    = $offset;
@@ -160,6 +176,7 @@ class News extends FrontendController{
         $this->new_model->pageSize = $this->perPage;
         $this->new_model->pageNum = $offset;
         $this->data['paginations'] = $this->ajax_pagination->create_links();
+        //debug($this->data['paginations']);
 		$this->data['news'] = $this->new_model->getItems();
         
         //load the view
