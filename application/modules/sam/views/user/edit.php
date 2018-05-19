@@ -31,7 +31,7 @@
 						    </small>
 					  	</div>
 				       
-				        <?php if(!$userData['isface']){ ?>
+				        <?php if(empty($userData['isface'])){ ?>
 				        <div class="form-group">
 						    <label class="info-title" for="oldpassword">Mật khẩu hiện tại</label>
 						    <input type="password" name="oldpassword" class="form-control" value="<?=set_value('oldpassword');?>" id="oldpassword" />

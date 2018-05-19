@@ -49,13 +49,8 @@ class Payment extends FrontendController{
 
 				$this->form_validation->set_rules($config);
 
-				if ($this->form_validation->run() == FALSE){
-					$this->data['newCategories'] = $this->category->getNewcategories();
-					$this->data['topNews'] = $this->new_model->getTopNews();
-					$this->data['newNews'] = $this->new_model->getNewNews(); 
-	                $this->load->view($this->data['masterPage'], $this->data);
-	            }else{
-
+				if ($this->form_validation->run() == TRUE){
+					
 	            	if($this->cart->total_items() > 0){
 		                $post = $this->input->post();
 		                $payment_method = $post['payment_method'];

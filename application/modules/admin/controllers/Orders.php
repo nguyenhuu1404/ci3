@@ -26,8 +26,21 @@ class Orders extends AdminGrocery {
 		$crud->field_type('order_status', 'dropdown', $order_status);
 		$crud->field_type('user_id', 'dropdown', $users);
 		$crud->unset_add();
+		$crud->add_action('Chi tiết đơn hàng', '', '', 'ui-icon-plus', array($this, 'linkDetail'));
 		$output = $this->crud->render();
 		$this->_example_output($output);
+		
+	}
+	public function linkDetail($primary_key , $row){
+		return site_url('admin/orders/detail/').$row->id;
+	}
+	public function detail($orderId){
+		$this->load->model('order');
+		
+		$this->data['order'] = $this->order->getOne($orderId);
+		$this->data['orderItems'] = $this->order->getOrderItems($orderId);
+		$this->load->view('orders/detail', $this->data);
+		
 		
 	}
 

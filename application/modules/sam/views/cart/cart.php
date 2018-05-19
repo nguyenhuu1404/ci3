@@ -23,27 +23,7 @@
    			<a class="btn btn-danger" href="/thanh-toan.html">Thanh toán</a>
   		</div>';
   		?>
-  	<script type="text/javascript">
-  		function removeCartItemMenu(id, cart=false){
-  			$.ajax({
-			  method: "POST",
-			  url: "/sam/cart/removeCartItemMenu",
-			  data: { id: id }
-			})
-			  .done(function( msg ) {
-			  	if(cart == 'cart'){
-			  		location.reload();	
-			  	}else{
-			  		$('#box-cart').html(msg);
-			    	var totalCart = $('#total-item').val();
-			   		$('#num-cart').text(totalCart);
-			    	$('#dropdownMenu2').trigger("click");
-			  	}
-			    
-
-			 });
-  		}
-  	</script>	
+  	
   	<?php	
 	}else{
 		echo '<input type="hidden" id="total-item" value="'.$this->cart->total_items().'" />';

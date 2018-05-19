@@ -1,11 +1,13 @@
 <script type="application/ld+json">
 { "@context": "http://schema.org", 
- "@type": "TechArticle",
+ "@type": "Article",
  "headline": "Sâm ngọc linh",
- "proficiencyLevel": "Expert",
- "alternativeHeadline": "This article is also about robots and stuff",
+ "alternativeHeadline": "Sản phẩm vì sức khỏe cộng đồng!",
  "image": "<?php echo base_url('assets/sam/images/news/category/').$new['image']; ?>",
- "author": "Sâm ngọc linh",  
+ "author": "huunv90", 
+ "award": "Best article ever written",
+ "editor": "Craig Mount", 
+ "genre": "search engine optimization", 
  "keywords": "<?=$new['name']; ?>", 
  "publisher": "tuthuocnam1508",
  "url": "<?=current_url();?>",
@@ -16,9 +18,10 @@
  	echo '"dateModified": "'.$modified.'",';
  } ?>
  "description": "<?=$description;?>",
- "articleBody": "<?=$title;?>"
+ "articleBody": "<?=$new['brief'];?>"
  }
 </script>
+
 <div class="full mb-3">
   	<div class="container">
   		<?php $this->load->view('common/breadcumbs'); ?>

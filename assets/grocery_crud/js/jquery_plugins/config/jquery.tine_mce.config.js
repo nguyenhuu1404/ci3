@@ -4,20 +4,21 @@
 		var options = {
         selector: "textarea.texteditor",
         forced_root_block : "",
-		statusbar: false,
-        force_br_newlines : true,
+        force_br_newlines : false,
         force_p_newlines : false,
         relative_url: false,
         remove_script_host: false,
         plugins: [
             "advlist autolink lists link image charmap print preview anchor",
-            "searchreplace visualblocks code fullscreen media",
-            "insertdatetime media table contextmenu paste textcolor"
+            "visualblocks code fullscreen media",
+            "media table contextmenu textcolor"
         ],
-
-        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | styleselect formatselect fontselect fontsizeselect | forecolor backcolor latex",
+        toolbar: "media image link bold italic underline table | alignleft aligncenter alignjustify forecolor backcolor removeformat fullscreen code",
+		statusbar: false,
+		menubar: false,
         entity_encoding : "raw",
         relative_urls: false,
+
         external_filemanager_path: "/3rdparty/filemanager/filemanager/",
         filemanager_title:"Quản lý file upload" ,
 

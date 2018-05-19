@@ -228,9 +228,6 @@ class Ajax_pagination {
     protected function getAJAXlink($count, $text) {
         $pageCount = $count?$count:0;
         return '<a href="javascript:void(0);"' . $this->anchor_class . ' onclick="'.$this->link_func.'('.$pageCount.')">'. $text .'</a>';
-    }
-
-    
-    
+    }  
 
 }

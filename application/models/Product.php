@@ -24,22 +24,22 @@ class Product extends Grocery_Model {
 	}
 	public function getNewProduct(){
 		$data = $this->db->select('*')->from($this->table)
-		->limit(4)->order_by('id desc')->get()->result_array();
+		->limit(4)->order_by('id desc')->where('status', 1)->get()->result_array();
 		return $data;
 	}
 	public function getHotProduct(){
 		$data = $this->db->select('*')->from($this->table)->where('hot', 1)
-		->limit(4)->get()->result_array();
+		->limit(4)->where('status', 1)->get()->result_array();
 		return $data;
 	}
 	public function getViewProduct(){
 		$data = $this->db->select('*')->from($this->table)->order_by('views desc')
-		->limit(4)->get()->result_array();
+		->limit(4)->where('status', 1)->get()->result_array();
 		return $data;
 	}
 	public function getRecommendProduct(){
 		$data = $this->db->select('*')->from($this->table)->where('recommend', 1)
-		->limit(4)->get()->result_array();
+		->limit(4)->where('status', 1)->get()->result_array();
 		return $data;
 	}
 	public function getImageById($id){
@@ -57,7 +57,7 @@ class Product extends Grocery_Model {
 	}
 	
 	public function getRelateProduct($id, $categoryIds){
-		$data = $this->db->from($this->table)->where('category_ids', $categoryIds)->where('id !=', $id)->order_by('rand()')->limit(4)->get()->result_array();
+		$data = $this->db->from($this->table)->where('category_ids', $categoryIds)->where('id !=', $id)->order_by('rand()')->limit(4)->where('status', 1)->get()->result_array();
 		return $data;
 	}
 	public function getGalleries($productId){

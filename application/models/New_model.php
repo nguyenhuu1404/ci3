@@ -70,7 +70,7 @@ class New_model extends Grocery_Model {
 		return $data;	
 	}
 	public function getTagBySlug($slug, $type){
-		$data = $this->db->select('id, parents, name, title, description')
+		$data = $this->db->select('id, name, title, description')
 			->from('tags')
 			->where('slug', $slug)->where('type', $type)
 			->get()
@@ -78,7 +78,7 @@ class New_model extends Grocery_Model {
 		return $data;
 	}
 	public function getRelateNews($id, $categoryIds){
-		$data = $this->db->from($this->table)->where('category_id', $categoryIds)->where('id !=', $id)->where('type', 'post')->order_by('rand()')->limit(4)->get()->result_array();
+		$data = $this->db->from($this->table)->where('category_id', $categoryIds)->where('id !=', $id)->where('type', 'post')->order_by('rand()')->limit(4)->where('status', 1)->get()->result_array();
 		return $data;
 	}
 	

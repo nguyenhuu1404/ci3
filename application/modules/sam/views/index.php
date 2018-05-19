@@ -25,14 +25,20 @@
 	<link rel="author" href="https://plus.google.com/u/0/+NguyenHuu1404" />
 	<link rel="shortcut icon" type="image/x-icon" href="/assets/sam/images/favicon.ico"/>
 	<link rel="canonical" href="<?=current_url();?>" />	
-    
-    
+    <link rel="stylesheet" href="/assets/sam/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/assets/sam/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="/assets/sam/css/style.css" />
+    <?php if(isset($css)){
+	foreach($css as $val){
+			echo '<link rel="stylesheet" href="/assets/'.$module.'/css/'.$val.'.css" />';
+		}
+	} ?>
 	<style>
-		<?php $this->load->view('common/css'); ?>
+		<?php //$this->load->view('common/css'); ?>
 		.logo{background-image: url('/assets/sam/images/logo.png'); width: 200px; height: 58px;}
 		
 	</style>
-	<script src="/assets/sam/js/jquery.min.js"></script>
+	<script defer src="/assets/sam/js/jquery.min.js"></script>
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -47,8 +53,7 @@
 <?php $this->load->view($layout); ?>
 <?php $this->load->view('footer'); ?>
 
-<script defer src="/assets/sam/js/popper.min.js"></script>		
-<script defer src="/assets/sam/js/bootstrap.min.js"></script>
+<script defer src="/assets/sam/js/lib.min.js"></script>		
 <?php 
 		if(isset($js)){
 			foreach($js as $val){
@@ -60,16 +65,6 @@
 			}
 		} 
 	?>	
-<script src="/assets/sam/js/echo.min.js"></script>
-<script>
-$(document).ready(function(){
-    echo.init({
-        offset: 250,
-		throttle: 50,
-		unload: false,
-		
-    });
-});
-</script>
+<script defer src="/assets/sam/js/main.js"></script>
 </body>
 </html>

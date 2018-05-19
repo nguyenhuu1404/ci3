@@ -47,9 +47,8 @@ class Page extends FrontendController{
             );
             $this->form_validation->set_rules($config);
 
-            if ($this->form_validation->run() == FALSE){
-                    $this->load->view($this->data['masterPage'], $this->data);
-            }else{
+            if ($this->form_validation->run() == TRUE){
+            
             	$post = $this->input->post();
             	$contact = $post;
             	$contact['ip'] = $this->input->ip_address();
@@ -65,9 +64,8 @@ class Page extends FrontendController{
             }
 		}
 
-		
-		
 		$this->load->view($this->data['masterPage'], $this->data);
+		
 	}
 	public function thank(){
 		$this->data['layout'] = 'page/thank';

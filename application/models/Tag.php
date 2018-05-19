@@ -5,7 +5,7 @@ class Tag extends Grocery_Model {
 
 	public function getTags($tags){
 		$tags = explode(',', $tags);
-		$dataTags = $this->db->select('id, slug, name')->from('tags')->where_in('id', $tags)->get()->result_array();
+		$dataTags = $this->db->select('id, slug, name')->from('tags')->where_in('id', $tags)->where('status', 1)->get()->result_array();
 		return $dataTags;
 	}
 	

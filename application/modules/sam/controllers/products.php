@@ -13,7 +13,8 @@ class Products extends FrontendController{
 		$this->data['css'] = array('jquery-ui.min');
 		$this->data['js'] = array(
 			array(
-				'name' => 'jquery-ui.min'
+				'name' => 'jquery-ui.min',
+				'defer' => true
 			)
 			
 		);
@@ -25,7 +26,7 @@ class Products extends FrontendController{
 		$this->data['name'] = 'Sâm ngọc linh';
 		$this->data['description'] = $dataCategory['description'];
 		$this->data['productCategories'] = $this->category->getCategoriesByType('product');
-
+		$this->product->conditions = array('status' => 1);
 		//Pagination
         $totalProduct = $this->product->getCountItems();
         //debug($totalRec);
@@ -129,6 +130,7 @@ class Products extends FrontendController{
 			$this->data['productCategories'] = $this->category->getCategoriesByType('product');
 
 			$this->product->likeConditions = array("CONCAT(',',category_ids,',')" => $dataCategory['id']);
+			$this->product->conditions = array('status' => 1);
 			//Pagination
 	        $totalProduct = $this->product->getCountItems();
 	        //debug($totalRec);
@@ -216,7 +218,7 @@ class Products extends FrontendController{
 			
 			$this->product->conditions = array('price >=' => $minPriceInput, 'price <=' => $maxPriceInput);
 		}
-        
+        $this->product->conditions = array('status' => 1);
         //total rows count
         $totalProduct = $this->product->getCountItems();
         
@@ -261,6 +263,7 @@ class Products extends FrontendController{
 			$this->data['productCategories'] = $this->category->getCategoriesByType('product');
 
 			$this->product->likeConditions = array("CONCAT(',',tag_ids,',')" => $dataTag['id']);
+			$this->product->conditions = array('status' => 1);
 			//Pagination
 	        $totalProduct = $this->product->getCountItems();
 	        //debug($totalRec);
@@ -331,7 +334,7 @@ class Products extends FrontendController{
 		$this->data['name'] = 'Sâm ngọc linh';
 		$this->data['seoType'] = 'object';
 		$this->data['productCategories'] = $this->category->getCategoriesByType('product');
-
+		$this->product->conditions = array('status' => 1);
 		//Pagination
         $totalProduct = $this->product->getCountItems();
         //debug($totalRec);

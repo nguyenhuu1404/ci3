@@ -72,6 +72,7 @@ class News extends FrontendController{
 
 			$this->new_model->conditions = array('category_id' => $dataCategory['id']);
 			//Pagination
+			$this->new_model->conditions = array('status' => 1);
 	        $totalNews = $this->new_model->getCountItems();
 
 	        //pagination configuration
@@ -109,6 +110,7 @@ class News extends FrontendController{
 
 			$this->new_model->likeConditions = array("CONCAT(',',tag_ids,',')" => $dataTag['id']);
 			//Pagination
+			$this->new_model->conditions = array('status' => 1);
 	        $totalNews = $this->new_model->getCountItems();
 
 	        //pagination configuration
@@ -142,7 +144,7 @@ class News extends FrontendController{
         }else{
             $offset = $page;
         }
-        
+        $this->new_model->conditions = array('status' => 1);
         //total rows count
         $totalNews = $this->new_model->getCountItems();
         

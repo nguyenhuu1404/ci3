@@ -140,24 +140,7 @@
 							
 							<input id="dathang" type="submit" value="Đặt hàng" class="btn btn-lg w-100 btn-danger" />
 							
-							<script type="text/javascript">
-							$('#dathang').click(function(){
-								$('#checkout').submit();
-								$(this).attr("disabled", true);
-							});
-							$('.input-radio').click(function() {
-								var payment_method = $('input[name=payment_method]:checked').val();
-								
-								
-								if(payment_method == 'bacs'){
-									$('.payment_method_bacs').show();
-									$('.payment_method_cod').hide();
-								}else if(payment_method == 'cod'){
-									$('.payment_method_bacs').hide();
-									$('.payment_method_cod').show();
-								}
-							});
-							</script>
+							
 						</div>	
 	
 					</div>

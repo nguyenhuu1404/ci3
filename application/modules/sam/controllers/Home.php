@@ -11,7 +11,7 @@ class Home extends FrontendController{
 
 		$this->data['layout'] = 'home/content';
 		$this->data['title'] = $this->data['title'];
-		$this->data['name'] = 'Sâm ngọc linh';
+		$this->data['name'] = 'Sâm ngọc linh - Sâm Hàn Quốc - An cung ngưu hoàng hoàn';
 		$this->data['seoType'] = 'website';
 		$this->data['description'] = $this->data['description'];
 		$this->data['productCategories'] = $this->category->getCategoriesByType('product');
