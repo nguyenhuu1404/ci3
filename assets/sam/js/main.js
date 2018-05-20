@@ -7,6 +7,21 @@ window.onload = function () {
     });
     if(typeof minPrice !== 'undefined' && typeof maxPrice !== 'undefined'){
     	sliderPrice(minPrice, maxPrice);
+    };
+    if(0){
+    	$('body').bind('cut copy paste', function (e) {
+	        e.preventDefault();
+	    });
+	    $("body").on("contextmenu",function(e){
+	        return false;
+	    });
+		$(document).keydown(function(event){
+			if (event.keyCode == 123 || (event.ctrlKey && event.keyCode == 85) || (event.ctrlKey && event.shiftKey && event.keyCode == 73 || event.keyCode == 116)) {
+	            return false;
+	        } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+	            return false; //Prevent from ctrl+shift+i
+	        }
+		});
     }
     
 };
@@ -64,7 +79,7 @@ function addCart(productId){
 	    $('#dropdownMenu2').trigger("click");
 
 	 });
-}
+};
 
 function callMe(){
 		var productName = $('#name-pr').val();
@@ -108,12 +123,12 @@ function callMe(){
                 }
             });
 		}
-	}
+	};
 function isPhone(phone) {
   var phoneRe = /^(09)|(02)|(01[2689])[0-9]$/;
   var digits = phone.replace(/\D/g, "");
   return phoneRe.test(digits);
-}
+};
 
 function sliderPrice(min, max){
     var range = parseInt(min) - 2;
@@ -133,8 +148,8 @@ function sliderPrice(min, max){
 
     $( "#minPrice" ).val($( "#slider-range" ).slider( "values", 0 ));
     $( "#maxPrice" ).val($( "#slider-range" ).slider( "values", 1 ));
-}
-function removeCartItemMenu(id, cart=false){
+};
+function removeCartItemMenu(id, cart){
 	$.ajax({
 	  	method: "POST",
 	  	url: "/sam/cart/removeCartItemMenu",
@@ -152,4 +167,4 @@ function removeCartItemMenu(id, cart=false){
 	    
 
 	});
-}
+};

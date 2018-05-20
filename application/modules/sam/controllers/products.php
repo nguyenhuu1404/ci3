@@ -201,6 +201,7 @@ class Products extends FrontendController{
 		$minPrice = $this->product->getMinField('price');
 
 		$name = $this->input->post('name');
+		$this->product->status = 1;
 		if($name != ''){
 			$this->product->likeTexts = array("name" => $name);
 		}
@@ -219,7 +220,7 @@ class Products extends FrontendController{
 			
 			$this->product->conditions = array('price >=' => $minPriceInput, 'price <=' => $maxPriceInput);
 		}
-        $this->product->conditions = array('status' => 1);
+        
         //total rows count
         $totalProduct = $this->product->getCountItems();
         

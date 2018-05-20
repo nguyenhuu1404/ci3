@@ -12,6 +12,7 @@ class Grocery_Model extends MY_Model{
 	public $groupBy = false;
 	public $having = false;
 	public $likeTexts = false;
+	public $status = false;
 
 	public function getItems(){
 		$query = $this->db->select($this->selectFields)->from($this->table);
@@ -34,6 +35,9 @@ class Grocery_Model extends MY_Model{
 				$query->like($field, $value);
 			}
 			
+		}
+		if($this->status){
+			$query->where('status', 1);
 		}
 		if($this->orConditions){
 			$query->or_where($this->orConditions);
