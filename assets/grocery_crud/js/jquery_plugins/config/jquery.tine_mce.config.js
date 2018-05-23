@@ -3,21 +3,19 @@
 		
 		var options = {
         selector: "textarea.texteditor",
+		theme: 'modern',
         forced_root_block : "",
         force_br_newlines : false,
         force_p_newlines : false,
         relative_url: false,
         remove_script_host: false,
         plugins: [
-            "advlist autolink lists link image charmap print preview anchor",
+            "advlist wordcount autolink lists link image charmap print preview anchor",
             "visualblocks code fullscreen media",
             "media table contextmenu textcolor"
         ],
-        toolbar: "media image link bold italic underline table | alignleft aligncenter alignjustify forecolor backcolor removeformat fullscreen code",
-		statusbar: false,
-		menubar: false,
-        entity_encoding : "raw",
-        relative_urls: false,
+        toolbar: "formatselect | media image link bold italic underline table | numlist bullist outdent indent |  alignleft aligncenter alignjustify forecolor backcolor removeformat",
+		
 
         external_filemanager_path: "/3rdparty/filemanager/filemanager/",
         filemanager_title:"Quản lý file upload" ,

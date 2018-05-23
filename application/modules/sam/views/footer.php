@@ -24,12 +24,10 @@
 			</div>
 			<div class="col-12 col-md-3 tagcloud">
 				<h3 class="title-new fs09">Từ khóa</h3>
-				<a href="">HÀNG NHẬP KHẨU</a> 
-				<a href="">PHỤ NỮ</a> 
-				<a href="">SÂM TƯƠI HÀN QUỐC</a> 
-				<a href="">SẢN PHẨM BÁN CHẠY</a> 
-				<a href="">SẢN PHẨM MỚI</a> 
-				<a href="">TRẺ EM</a>
+				<a href="/tu-khoa/san-pham-ban-chay.html">Sản phẩm bán chạy</a> 
+				<a href="/tag/benh-ung-thu.html">Bệnh ung thư</a> 
+				<a href="/tag/benh-tai-bien-mach-mau-nao.html">Bệnh tai biến mạch máu não</a> 
+				
 			</div>
 		</div>
 	</div>
