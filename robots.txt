@@ -2,4 +2,41 @@ User-agent: *
 
 Disallow: /system/
 Disallow: /application/
+Disallow: /assets/
+
+Disallow: /tu-khoa/phu-nu
+Disallow: /tu-khoa/sam-tuoi-han-quoc
+Disallow: /danh-muc/sam-han-quoc/sam-tuoi-han-quoc
+Disallow: /yeu-cau-tu-van
+Disallow: /san-pham/yen-dao-phu-quoc.html/yen_nuoi_dao_phu_quoc
+Disallow: /testimonials
+Disallow: /san-pham/sam-tuoi-han-quoc-loai-14-den-18-cu-1kg.html/sam_tuoi_han_quoc_loai_14_18_cu_1kg
+Disallow: /san-pham/vien-ngam-sam-ngoc-linh.html/vien_ngam_sam_ngoc_linh
+Disallow: /san-pham/nam-chaga.html/nam-chaga-nga
+Disallow: /san-pham/sam-tuoi-han-quoc-loai-6-cu-1kg.html/sam_tuoi_han_quoc_loai_6_cu_1kg
+Disallow: /san-pham/vu-hoang-thanh-tam.html/vu-hoang-thanh-tam
+Disallow: /san-pham/ruou-sam-ngoc-linh.html/ruou_sam_ngoc_linh
+Disallow: /san-pham/xao-tam-phan-kho.html/xao_tam_phan_kho
+Disallow: /san-pham/sam-tuoi-han-quoc-loai-6-cu-1kg.html/sam_tuoi_han_quoc_loai_6_cu
+Disallow: /san-pham/cay-giong-sam-ngoc-linh.html/cay_giong_sam_ngoc_linh
+Disallow: /sam/proudcts/search?name={search_term}
+Disallow: /sam/proudcts/search?s={search_term}
+Disallow: /testimonial/
+Disallow: /san-pham/page/1
+Disallow: /san-pham/huong-dan-mua-hang.html
+Disallow: /san-pham/yen-nuoi-dao-phu-quoc.html
+Disallow: /san-pham/chua-benh-tieu-duong-hieu-qua-voi-nam-chaga-nga.html
+Disallow: /san-pham/tai-sao-nguoi-tre-de-bi-suy-than.html
+Disallow: /san-pham/dong-trung-ha-thao-tay-tang.html/dong_trung_ha_thao_thien_nhien_tay_tang/feed
+Disallow: /san-pham/bai-viet-hay-ve-benh-ung-thu.html
+Disallow: /staticblocks
+Disallow: /san-pham/product-5752
+Disallow: /san-pham/product-5890
+Disallow: /san-pham/product-5848
+Disallow: /assets/sam/images/news/category/
+Disallow: /tag/ho-tro
+Disallow: /sam/products/filterProduct/
+Disallow: /danh-muc/mat-ong-rung
+Disallow: /san-pham/tra-sam-ngoc-linh.html/feed
+
 Sitemap: http://tuthuocnam.com/sitemap.xml

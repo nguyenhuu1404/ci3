@@ -1,6 +1,18 @@
 <script type="application/ld+json">
 { "@context": "http://schema.org", 
  "@type": "Article",
+ "mainEntityOfPage": {
+     "@type": "WebPage",
+     "@id": "<?=current_url();?>"
+  },
+  "publisher": {
+	"@type": "Organization",
+	"name": "Tuthuocnam",
+	"logo": {
+	"@type": "imageObject",
+	"url": "http://tuthuocnam.com/assets/sam/images/logo.png"
+	}
+},
  "headline": "Sâm ngọc linh",
  "alternativeHeadline": "Sản phẩm vì sức khỏe cộng đồng!",
  "image": "<?php echo base_url('assets/sam/images/news/category/').$new['image']; ?>",
@@ -9,7 +21,6 @@
  "editor": "Craig Mount", 
  "genre": "search engine optimization", 
  "keywords": "<?=$new['name']; ?>", 
- "publisher": "tuthuocnam1508",
  "url": "<?=current_url();?>",
  "datePublished": "<?php $tam = strtotime($new['created']); echo date('Y-m-d', $tam);?>",
  "dateCreated": "<?php $tam = strtotime($new['created']); echo date('Y-m-d', $tam);?>",

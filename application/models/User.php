@@ -124,7 +124,7 @@ class User extends Grocery_Model{
 			->where('status', 1);
 		
 		$query = $this->db->get($this->table);
-		echo $this->db->last_query();
+		
 		if($query->num_rows() > 0){
 			return $query->row_array();
 		}else{

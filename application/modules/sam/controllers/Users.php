@@ -30,9 +30,7 @@ class Users extends FrontendController{
 
             $this->load->library('form_validation');
             $key = config_item('encryption_key');
-
-
-
+			
             if($this->input->post('signin') == 1){
                 $post = $this->input->post();
                 $pass = fillter($post['in_password']);

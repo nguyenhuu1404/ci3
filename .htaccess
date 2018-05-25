@@ -5,6 +5,8 @@ RewriteRule ^(.*)$ http://tuthuocnam.com/$1 [L,R=301]
 
 RewriteRule ^(.*)index\.(php|html?)$ /$1 [R=301,NC,L]
 
+redirect 301 /dieu-tri-benh-tieu-duong-ung-thu-bang-nam-chaga-nga.html http:/tuthuocnam/chua-benh-tieu-duong-hieu-qua-voi-nam-chaga-nga.html
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php/$1 [L]
